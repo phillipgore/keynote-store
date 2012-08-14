@@ -47,7 +47,7 @@ class Order
 	property :id, 					Serial
 	
 	property :created_at,			DateTime
-	property :order_number,			Integer, :length => 50
+	property :order_number,			Integer
 	property :order_first_name,		String
 	property :order_last_name,		String
 	property :order_email,			String
