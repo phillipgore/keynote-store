@@ -70,10 +70,10 @@ class TheKeynoteStore < Sinatra::Base
 	end
 		
 	post '/payment' do
-		@order =  Order.new(params[:order])
-		if @order.save
+		@order =  Order.create(params[:order])
+		
 			Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
-			Stripe::Charge.create(
+			@charge = Stripe::Charge.create(
 			  :amount => @amount,
 			  :currency => "usd",
 			  :card => @order.stripe_token,
@@ -96,7 +96,7 @@ class TheKeynoteStore < Sinatra::Base
 			end
 			session['purchase'] = nil
 			redirect "/order/#{@order.id}"
-		end
+		
 	end
 	
 	get '/order/:id' do
