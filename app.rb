@@ -41,9 +41,9 @@ class TheKeynoteStore < Sinatra::Base
 			@purchase_total = @price.inject {|sum, key| sum + key }
 			@purchase_discount = @purchase_total - (@purchase_total * @discount_percentage)
 			if @purchase_count >= 3
-				@charge = @purchase_discount.to_i * 100
+				@ammount = @purchase_discount.to_i * 100
 			else
-				@charge = @purchase_total.to_i * 100
+				@ammount = @purchase_total.to_i * 100
 			end
 		end
 	end
@@ -74,7 +74,7 @@ class TheKeynoteStore < Sinatra::Base
 		if @order.save
 			Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
 			@charge = Stripe::Charge.create(
-			  :amount => @charge,
+			  :amount => @ammount,
 			  :currency => "usd",
 			  :card => @order.stripe_token,
 			  :description => @order.order_email
