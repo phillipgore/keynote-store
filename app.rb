@@ -73,7 +73,7 @@ class TheKeynoteStore < Sinatra::Base
 		@order =  Order.new(params[:order])
 		if @order.save
 			Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
-			@charge = Stripe::Charge.create(
+			Stripe::Charge.create(
 			  :amount => @amount,
 			  :currency => "usd",
 			  :card => @order.stripe_token,
@@ -86,12 +86,12 @@ class TheKeynoteStore < Sinatra::Base
 				@order.update(:order_number => @serial, :order_total => @purchase_total.to_i)
 			end
 			@purchase_hash.each do |key, value|
-				@new_theme = Theme.get(key.to_i)
-				@new_purchase = @order.purchases.create(
-					:item_name => @new_theme.name,
-					:item_id => @new_theme.id,
+				@theme = Theme.get(key.to_i)
+				@purchase = @order.purchases.create(
+					:item_name => @theme.name,
+					:item_id => @theme.id,
 					:item_quantity => value.to_i,
-					:item_price => @new_theme.price
+					:item_price => @theme.price
 				)
 			end
 			session['purchase'] = nil
