@@ -70,8 +70,8 @@ class TheKeynoteStore < Sinatra::Base
 	end
 		
 	post '/payment' do
-		@order =  Order.create(params[:order])
-		
+		@order =  Order.new(params[:order])
+		if @order.save
 			Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
 			@charge = Stripe::Charge.create(
 			  :amount => @amount,
@@ -79,24 +79,7 @@ class TheKeynoteStore < Sinatra::Base
 			  :card => @order.stripe_token,
 			  :description => @order.order_email
 			)
-			@serial = rand(1000000000000000..9999999999999999)
-			if @purchase_count >= 3
-				@order.update(:order_number => @serial, :order_discount => @discount_percentage, :order_total => @purchase_total.to_i)
-			else
-				@order.update(:order_number => @serial, :order_total => @purchase_total.to_i)
-			end
-			@purchase_hash.each do |key, value|
-				@theme = Theme.get(key.to_i)
-				@purchase = @order.purchases.create(
-					:item_name => @theme.name,
-					:item_id => @theme.id,
-					:item_quantity => value.to_i,
-					:item_price => @theme.price
-				)
-			end
-			session['purchase'] = nil
-			redirect "/order/#{@order.id}"
-		
+		end
 	end
 	
 	get '/order/:id' do
@@ -337,6 +320,7 @@ class TheKeynoteStore < Sinatra::Base
 	get '/delete/orders' do
 		Order.all().destroy!
 		Purchase.all().destroy!
+		redirect "/admin/orders"
 	end
 		
 	
