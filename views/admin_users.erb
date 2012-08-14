@@ -1,0 +1,34 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="content">
+	<div><%= flash[:notice] %></div>
+	<form action="/admin/add/user" method="post" id="user" enctype="multipart/form-data">
+		<label>First</label>
+		<input type="text" name="user[user_first_name]" id="user_first_name" autocorrect="off"><br>
+		<label>Last</label>
+		<input type="text" name="user[user_last_name]" id="user_last_name" autocorrect="off">
+
+		<label>Email</label>
+		<input type="email" autocomplete='off' name="user[user_email]" id="user_email" autocorrect="off" autocapitalize="off"/>
+		<label>Password</label>
+		<input type="text" autocomplete='off' name="user[password]" id="password" autocorrect="off" autocapitalize="off"/>
+	
+		<div id="buttons">		
+			<button type="submit">Add New User</button>
+		</div>
+	</form>
+</div>
+
+<div class="product_container">
+  <% @users.each_with_index do |users| %>
+  <div class="product">
+  		<div class="user_name"><%= users.user_first_name %> <%= users.user_last_name %></div>
+  		<div class="user_email"><%= users.user_email %></div>
+	    <div class="user_links">
+		    <a class="delete" href="/admin/delete/user/<%= users.id %>">Delete</a>
+		    <a class="edit" href="/admin/edit/user/<%= users.id %>">Edit</a></td>
+			<a class="edit" href="/admin/change/password/<%= users.id %>">Change Password</a>
+		</div>
+	</div>
+  <% end %>
+</div>

@@ -1,0 +1,18 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="content">
+	<div><%= flash[:notice] %></div>
+	<form action="/admin/update/user/<%= @user.id %>" method="post" id="user" enctype="multipart/form-data">
+		<label>First</label>
+		<input type="text" name="user[user_first_name]" id="user_first_name" autocorrect="off" value="<%= @user.user_first_name %>"><br>
+		<label>Last</label>
+		<input type="text" name="user[user_last_name]" id="user_last_name" autocorrect="off" value="<%= @user.user_last_name %>">
+
+		<label>Email</label>
+		<input type="email" autocomplete='off' name="user[user_email]" id="user_email" autocorrect="off" autocapitalize="off" value="<%= @user.user_email %>"/>
+	
+		<div id="buttons">		
+			<button type="submit">Update User</button>
+		</div>
+	</form>
+</div>

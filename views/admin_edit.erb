@@ -1,0 +1,16 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="product_container">
+	<% unless @complete_set.nil? %>
+		<div id="<%= @complete_set.name.downcase.gsub(" ", "_") %>" class="product">
+			<div class="edit_theme"><a class="delete" href="/admin/delete/<%= @complete_set.id %>">delete</a> <a class="edit" href="/admin/edit/<%= @complete_set.id %>">edit</a></div>
+			<div class="product_name"><%= @complete_set.name %></div>
+		</div>
+	<% end %>
+	<% @theme.each do |theme| %>
+		<div id="<%= theme.name.downcase.gsub(" ", "_") %>" class="product">
+			<div class="edit_theme"><a class="delete" href="/admin/delete/<%= theme.id %>">delete</a> <a class="edit" href="/admin/edit/<%= theme.id %>">edit</a></div>
+			<div class="product_name"><%= theme.name %></div>
+		</div>
+	<% end %>
+</div>

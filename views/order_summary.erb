@@ -1,0 +1,66 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="content">
+
+	<h3>Online Sales Receipt</h3>
+	<h6>Customer: <%= @order.order_first_name %> <%= @order.order_last_name  %></h6>
+	<h6>Date: <%= @order.created_at.strftime("%B %d, %Y") %></h6>
+	<h6>Invoice: 000-<%= @order.id %></h6>
+	&nbsp<br>
+	<p>The themes you purchased are listed below along with a download link. The download link will only be active for 24 hours. If you need assistance now or at anytime in the future please email us at support@keynotestore.com.</p>
+	<table id="invoice">
+		<tr>
+			<th class="text_align_left">Theme</th>
+			<th>Download</th>
+			<th>Quantity</th>
+			<th class="text_align_right">Price</th>
+			<th class="text_align_right">Totals</th>
+		</tr>
+		<% @purchase.each do |purchase| %>
+			<tr class="no_hover">
+				<td><%= purchase.item_name %></td>
+				<td class="text_align_center"><a class="download" href="#">download theme (24 hour limit)</a></td>
+				<td class="text_align_center"><%= purchase.item_quantity %></td>
+				<td class="text_align_right">$<%= purchase.item_price %></td>
+				<td class="text_align_right">$<%= purchase.item_quantity * purchase.item_price %></td>
+			</tr>
+		<% end %>
+		<% if @order.order_discount != 0 %>
+			<tr class="text_align_right no_hover">
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="fixed_column">total: $<%= @order.order_total %></td>
+			</tr>
+			<tr class="text_align_right no_hover">
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td>discount: <%= (@order.order_discount * 100).to_i %>%</td>
+			</tr>
+		<% end %>
+			<tr class="text_align_right no_hover">
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="fixed_column">total: $<%= (@order.order_total.to_i - (@order.order_total.to_i * @order.order_discount)).to_i %></td>
+			</tr>
+	</table>
+	
+	<div>
+		<h4>Thank You!</h4>
+		<h6>The Keynote Store</h6>
+	</div>
+	
+	<div class="button_container">
+		<a id="print" class="gray_button float_right" href="/print/order/<%= @order.id %>">printable receipt</a>
+	</div>
+	
+</div>
+
+<%= erb :'catalog', :layout => false %>
+
+<%= erb :'about', :layout => false %>

@@ -1,0 +1,8 @@
+<div class="product_container">
+	<% unless @complete_set.nil? %>
+		<a id="<%= @complete_set.name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @complete_set.name.downcase.gsub(" ", "_") %>"><div class="product_name"><%= @complete_set.name %></div></a>
+	<% end %>
+	<% @theme.each do |theme| %>
+		<a id="<%= theme.name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= theme.id %>"><div class="product_name"><%= theme.name %></div></a>
+	<% end %>
+</div>

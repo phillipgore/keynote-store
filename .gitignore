@@ -1,0 +1,10 @@
+keynote-store.db
+The Keynote Store.esproj/*
+
+views/.DS_Store
+
+public/.DS_Store
+public/images/.DS_Store
+public/photoshop/*
+public/video/*
+!.keep

@@ -1,0 +1,69 @@
+<%= erb :'banner_variable', :layout => false %>
+
+<div class="content">
+	<div><%= flash[:notice] %></div>
+	<form method="post" action="/admin/update/<%= @theme.id %>">
+		<label>Name</label>
+		<input id="name" type="text" name="theme[name]" value="<%= @theme.name %>" /><br>
+		<label>Tagline</label>
+		<input id="tagline" type="text" name="theme[tagline]" value="<%= @theme.tagline %>" /><br>
+		<label>Created Date</label>
+		<input id="created_at" type="text" name="theme[created_at]" value="<%= @theme.created_at.strftime("%B %d, %Y") %>" value="<%= @theme.created_at %>" /><br>
+		<label>Price</label>
+		<input id="price" type="text" name="theme[price]" value="26.00" value="<%= @theme.price %>" /><br>
+		<label class="float_left">Style</label>
+		<textarea id="style" name="theme[style]" rows="10"><%= @theme.style %></textarea><br>
+		<label class="float_left">Extras</label>
+		<textarea id="extras" name="theme[extras]" rows="10"><%= @theme.extras %></textarea><br>
+		
+		<label>Keynote Version</label>
+		<input id="keynote_version" type="text" name="theme[keynote_version]" value="<%= @theme.keynote_version %>" /><br>
+		<label>Required Fonts</label>
+		<input id="fonts" type="text" name="theme[fonts]" value="<%= @theme.fonts %>" /><br>
+		<label>Download Size</label>
+		<input id="download_size" type="text" name="theme[download_size]" value="<%= @theme.download_size %>" /><br>
+	
+		<label>Theme Sizes</label>
+		<input id="theme_sizes" type="text" name="theme[theme_sizes]" value="<%= @theme.theme_sizes %>" /><br>
+	
+		<label>Text Layouts</label>
+		<input id="text_layouts" type="text" name="theme[text_layouts]" value="<%= @theme.text_layouts %>" /><br>
+		<label>Photo Layouts</label>
+		<input id="photo_layouts" type="text" name="theme[photo_layouts]" value="<%= @theme.photo_layouts %>" /><br>
+		<label>Total Layouts</label>
+		<input id="total_layouts" type="text" name="theme[total_layouts]" value="<%= @theme.total_layouts %>" /><br>
+		<label>Extras Slides</label>
+		<input id="extras_slides" type="text" name="theme[extras_slides]" value="<%= @theme.extras_slides %>" /><br>
+		<label>Video Tutorial</label>
+		<input id="video_tutorial" type="text" name="theme[video_tutorial]" value="<%= @theme.video_tutorial %>" /><br>
+
+		<% if @theme_list.count > 2 %>
+			<label>Promotion One</label>
+			<select id="promo_one" name="theme[promo_one]">
+				<option value="5000">Complete Set Only</option>
+			  <% @theme_list.each do |theme_list| %>
+			  	<option <% if @theme.promo_one == theme_list.id %>selected="selected" <% end %> value="<%= theme_list.id %>"><%= theme_list.name %></option>
+			  <% end %>>
+			</select><br>
+			<label>Promotion Two</label>
+			<select id="promo_two" name="theme[promo_two]">
+				<option value="5000">Complete Set Only</option>
+			  <% @theme_list.each do |theme_list| %>
+			  	<option <% if @theme.promo_two == theme_list.id %>selected="selected" <% end %> value="<%= theme_list.id %>"><%= theme_list.name %></option>
+			  <% end %>
+			</select><br>
+			<label>Promotion Three</label>
+			<select id="promo_three" name="theme[promo_three]">
+				<option value="5000">Complete Set Only</option>
+			  <% @theme_list.each do |theme_list| %>
+			  	<option <% if @theme.promo_three == theme_list.id %>selected="selected" <% end %> value="<%= theme_list.id %>"><%= theme_list.name %></option>
+			  <% end %>
+			</select>
+		<% end %>
+		
+		<div id="buttons">
+			<button type="submit">Update Theme</button>
+		</div>	
+	
+	</form>
+</div>

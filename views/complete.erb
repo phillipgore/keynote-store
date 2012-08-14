@@ -1,0 +1,12 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div id="complete" class="content">
+	<div class="complete_info">
+		<h4>The Complete Set</h4>
+		<p>We are pleased to present our entire collection of high quality themes for Apple's Keynote presentation software. Every theme we offer. One simple purchase. One great price. One quick download. One easy install.</p>
+		<p>All 14 themes are now available for 60% off the individual theme set price. That's only $130 for what would normally be $328. The themes will be delivered via download. The box to the left only exists digitally.</p>
+		<a href="/buy/<%= @complete_set.id %>" class="blue_button">Buy - $<%= @complete_set.price %></a>
+	</div>
+</div>
+
+<%= erb :'catalog', :layout => false %>

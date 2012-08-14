@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/css/styles.css">
+	<link href='http://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+	
+	<title>The Keynote Store</title>
+</head>
+<body class="background_dark_wall">
+	<div id="wrapper">
+		<header>
+			<div class="header_box grey_metal"></div>
+			<div class="header_box grey_metal"></div>
+			<div class="header_box grey_metal"></div>
+			<div class="header_box grey_metal"></div>
+		</header>
+		<div id="left_border"></div>
+		<div id="container">
+			<div>
+				<nav>
+					<%= erb :'mini_cart', :layout => false %>
+					<%= erb :'nav', :layout => false %>
+				</nav>
+				<%= yield %>
+				<nav>
+					<%= erb :'nav', :layout => false %>
+				</nav>
+			</div>
+		</div>
+		<div id="right_border"></div>
+		<footer>
+			<div class="footer_box grey_metal"></div>
+			<div class="footer_box grey_metal"></div>
+			<div class="footer_box grey_metal"></div>
+			<div class="footer_box grey_metal"></div>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/jquery/scripts.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+	<script type="text/javascript">
+		// this identifies your website in the createToken call below
+		Stripe.setPublishableKey('pk_GcnZXZNHiyQu9Bve31oKZFmyDhrHf');
+
+		function stripeResponseHandler(status, response) {
+			if (response.error) {
+				$('.submit-button').removeAttr("disabled");
+				$('.payment_loading').fadeOut('fast');
+				$(".payment-errors").html(response.error.message);
+			} else {
+				var form$ = $("#payment-form");
+				var token = response['id'];
+				form$.append("<input type='hidden' name='order[stripe_token]' value='" + token + "' />");
+				form$.get(0).submit();
+			}
+		}
+		
+		$(document).ready(function() {
+			$("#payment-form").submit(function(event) {
+				if ($('#order_first_name').val() === "") {
+					$(".payment-errors").html("First name is empty.");
+				} else if ($('#order_last_name').val() === "") {
+					$(".payment-errors").html("Last name is empty.");
+				} else if ($('#order_email').val() === "") {
+					$(".payment-errors").html("Email is empty.");
+				} else {
+					$('.submit-button').attr("disabled", "disabled");
+					$('.payment_loading').fadeIn('fast');
+					Stripe.createToken({
+						name: $('#order_first_name').val() + " " + $('#order_last_name').val(),
+						number: $('.card-number').val(),
+						cvc: $('.card-cvc').val(),
+						exp_month: $('.card-expiry-month').val(),
+						exp_year: $('.card-expiry-year').val()
+					}, stripeResponseHandler);
+				}
+				return false;
+			});
+		});
+	</script>	
+</body>
+</html>
