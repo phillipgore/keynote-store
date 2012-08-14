@@ -73,10 +73,10 @@ class TheKeynoteStore < Sinatra::Base
 		@serial = rand(1000000000000000..9999999999999999)
 		if @purchase_count >= 3
 			@order =  Order.new(params[:order])
-			@order.attributes = { :order_number => @serial * 10, :order_discount => @discount_percentage, :order_total => @purchase_total.to_i }
+			@order.update(:order_number => @serial * 10, :order_discount => @discount_percentage, :order_total => @purchase_total.to_i)
 		else
 			@order = Order.new(params[:order])
-			@order.attributes = { :order_number => @serial * 10, :order_total => @purchase_total.to_i }
+			@order.update(:order_number => @serial * 10, :order_total => @purchase_total.to_i)
 		end
 		if @order.save
 			Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
