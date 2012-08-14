@@ -72,12 +72,6 @@ class TheKeynoteStore < Sinatra::Base
 	post '/payment' do
 		@order =  Order.new(params[:order])
 		if @order.save
-			@serial = rand(1000000000000000..9999999999999999)
-			if @purchase_count >= 3
-				@order.update(:order_number => @serial, :order_discount => @discount_percentage, :order_total => @purchase_total.to_i)
-			else
-				@order.update(:order_number => @serial, :order_total => @purchase_total.to_i)
-			end
 			Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
 			@charge = Stripe::Charge.create(
 			  :amount => @charge,
@@ -85,6 +79,12 @@ class TheKeynoteStore < Sinatra::Base
 			  :card => @order.stripe_token,
 			  :description => @order.order_email
 			)
+			@serial = rand(1000000000000000..9999999999999999)
+			if @purchase_count >= 3
+				@order.update(:order_number => @serial, :order_discount => @discount_percentage, :order_total => @purchase_total.to_i)
+			else
+				@order.update(:order_number => @serial, :order_total => @purchase_total.to_i)
+			end
 			@purchase_hash.each do |key, value|
 				@theme = Theme.get(key.to_i)
 				@new_purchase = @order.purchases.create(
