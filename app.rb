@@ -83,7 +83,7 @@ class TheKeynoteStore < Sinatra::Base
 		redirect "/payment/update/#{@order.id}"
 	end
 	
-	put '/payment/update/:id' do
+	get '/payment/update/:id' do
 		@order = Order.get(params[:id])
 		@serial = rand(1000000000000000..9999999999999999)
 		if @purchase_count >= 3
