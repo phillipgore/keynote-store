@@ -88,12 +88,6 @@ class TheKeynoteStore < Sinatra::Base
 					:item_price => @theme.price
 				)
 			end
-			@serial = rand(1000000000000000..9999999999999999)
-			if @purchase_count >= 3
-				@order.update(:order_number => @serial, :order_discount => @discount_percentage, :order_total => @purchase_total.to_i)
-			else
-				@order.update(:order_number => @serial, :order_total => @purchase_total.to_i)
-			end
 			session['purchase'] = nil
 			redirect "/order/#{@order.id}"
 		end
