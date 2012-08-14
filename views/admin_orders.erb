@@ -5,8 +5,7 @@
 	<table>
 		<tr>
 			<th>Date</th>
-			<th>First</th>
-			<th>Last</th>
+			<th>Name</th>
 			<th>Email</th>
 			<th>Newsletter</th>
 			<th>Total</th>
@@ -16,11 +15,15 @@
 		</tr>
 		<% @order.each do |order| %>
 		<tr>
-			<td><%= order.created_at.strftime("%B %d, %Y at %l:%M %P") %></td>
-			<td><%= order.order_first_name %></td>
-			<td><%= order.order_last_name %></td>
+			<td><%= order.created_at.strftime("%m/%d/%y at %l:%M %P") %></td>
+			<td><%= order.order_first_name %> <%= order.order_last_name %></td>
 			<td><%= order.order_email %></td>
-			<td><%= order.order_newsletter %></td>
+			<td><% if order.order_newsletter == true %>
+					yes
+				<% else %>
+					no
+				<% end %>
+			</td>
 			<td><%= order.order_total %></td>
 			<td><%= order.order_discount %></td>
 			<td><%= (order.order_total.to_i - (order.order_total.to_i * order.order_discount)).to_i %></td>
@@ -28,5 +31,9 @@
 		</tr>
 		<% end %>
 	</table>
+	
+	<div class="button_container">
+		<a class="gray_button float_right" href="/delete/orders">clear all orders</a>
+	</div>
 
 </div>

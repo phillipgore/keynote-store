@@ -334,6 +334,11 @@ class TheKeynoteStore < Sinatra::Base
 		@order = Order.all()
 		erb :admin_orders, :layout => :admin
 	end
+	
+	delete '/delete/orders' do
+		Order.all().destroy!
+		Purchase.all().destroy!
+	end
 		
 	
 	
