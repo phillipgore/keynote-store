@@ -1,0 +1,1 @@
+{"klass":"Taps::Push","database_url":"sqlite://keynote-store.db","remote_url":"http://heroku:osui59a24am79x@taps19.heroku.com","session_uri":"/sessions/8597927505","stream_state":{},"completed_tables":["users","themes"],"table_filter":null,"local_tables_info":{"users":2,"themes":15,"orders":2,"purchases":1}}

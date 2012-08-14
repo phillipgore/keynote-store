@@ -1,0 +1,30 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="content">
+
+	<table>
+		<tr>
+			<th>Date</th>
+			<th>First</th>
+			<th>Last</th>
+			<th>Email</th>
+			<th>Newsletter</th>
+			<th>Total</th>
+			<th>Discount</th>
+			<th>Charged</th>
+			<th>Token</th>
+		</tr>
+		<% @order.each do |order| %>
+			<td><%= order.created_at.strftime("%B %d, %Y") %></td>
+			<td><%= order.order_first_name %></td>
+			<td><%= order.order_last_name %></td>
+			<td><%= order.order_email %></td>
+			<td><%= order.order_newsletter %></td>
+			<td><%= order.order_total %></td>
+			<td><%= order.order_discount %></td>
+			<td><%= order.order_total - (order.order_total * order.order_discount)%></td>
+			<td><%= order.token %></td>
+		<% end %>
+	</table>
+
+</div>

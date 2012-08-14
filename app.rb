@@ -328,6 +328,12 @@ class TheKeynoteStore < Sinatra::Base
 			redirect "/admin/users"
 		end
 	end
+	
+	get '/admin/orders' do
+		@heading = "Orders."
+		@order = Order.all()
+		erb :admin_orders, :layout => :admin
+	end
 		
 	
 	
