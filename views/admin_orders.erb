@@ -15,14 +15,14 @@
 			<th>Token</th>
 		</tr>
 		<% @order.each do |order| %>
-			<td><%= order.created_at.strftime("%B %d, %Y") %></td>
+			<td><%= order.created_at.strftime("%B %d, %Y at %l:%M %P") %></td>
 			<td><%= order.order_first_name %></td>
 			<td><%= order.order_last_name %></td>
 			<td><%= order.order_email %></td>
 			<td><%= order.order_newsletter %></td>
 			<td><%= order.order_total %></td>
 			<td><%= order.order_discount %></td>
-			<td><%= order.order_total - (order.order_total * order.order_discount)%></td>
+			<td><%= (@order.order_total.to_i - (@order.order_total.to_i * @order.order_discount)).to_i %></td>
 			<td><%= order.token %></td>
 		<% end %>
 	</table>
