@@ -167,6 +167,7 @@ class TheKeynoteStore < Sinatra::Base
 		if @user
 			if @user.password == params[:password]
 			session['user_id'] = @user.id
+			session['expires'] = 86400
 			redirect '/admin/edit'
 		else
 			flash.next[:notice] = '<div id="flash">Sorry, invalid password.</div>'
@@ -252,7 +253,7 @@ class TheKeynoteStore < Sinatra::Base
 	
 	get '/admin/users' do
 		@heading = "Manage Users."
-		@users = User.all(:purchase => [:user_last_name.asc])
+		@users = User.all(:order => [:user_last_name.asc])
 		erb :admin_users, :layout => :admin
 	end
 	

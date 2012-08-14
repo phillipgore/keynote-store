@@ -8,7 +8,7 @@
 		<label>Tagline</label>
 		<input id="tagline" type="text" name="theme[tagline]" value="<%= @theme.tagline %>" /><br>
 		<label>Created Date</label>
-		<input id="created_at" type="text" name="theme[created_at]" value="<%= @theme.created_at.strftime("%B %d, %Y") %>" value="<%= @theme.created_at %>" /><br>
+		<input id="created_at" type="text" name="theme[created_at]" <% unless @theme.created_at = "" %>value="<%= @theme.created_at.strftime("%B %d, %Y") %>"<% end %> /><br>
 		<label>Price</label>
 		<input id="price" type="text" name="theme[price]" value="26.00" value="<%= @theme.price %>" /><br>
 		<label class="float_left">Style</label>
