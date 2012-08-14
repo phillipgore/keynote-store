@@ -88,7 +88,7 @@ class TheKeynoteStore < Sinatra::Base
 			)
 			@purchase_hash.each do |key, value|
 				@theme = Theme.get(key.to_i)
-				@purchase = @order.purchases.create(
+				@new_purchase = @order.purchases.create(
 					:item_name => @theme.name,
 					:item_id => @theme.id,
 					:item_quantity => value.to_i,
