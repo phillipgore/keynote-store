@@ -75,7 +75,7 @@
 				<input id="order_email" type="text" name="order[order_email]" class="email"/>
 				<input id="order_newsletter"  type="checkbox" checked name="order[order_newsletter]" value="true" /> <label>Update me with the occasional (truly rare) email.</label>
 				
-				<input id="order_number" type="hidden" name="order[order_number]" value="<%= rand(100..999) %>" />
+				<input id="order_number" type="hidden" name="order[order_number]" value="<%= rand(100000..999999) %>" />
 				<input id="order_total" type="hidden" name="order[order_total]" value="<%= @purchase_total.to_i %>" />
 				<% if @purchase_count >= 3 %>
 					<input id="order_discount" type="hidden" name="order[order_discount]" value="<%= @discount_percentage %>" />
