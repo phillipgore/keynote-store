@@ -79,6 +79,21 @@ class TheKeynoteStore < Sinatra::Base
 			  :card => @order.stripe_token,
 			  :description => @order.order_email
 			)
+			@purchase_hash.each do |key, value|
+				@theme = Theme.get(key.to_i)
+				@purchase = @order.purchases.create(
+					:item_name => @theme.name,
+					:item_id => @theme.id,
+					:item_quantity => value.to_i,
+					:item_price => @theme.price
+				)
+			end
+			@serial = rand(1000000000000000..9999999999999999)
+			if @purchase_count >= 3
+				@order.update(:order_number => @serial, :order_discount => @discount_percentage, :order_total => @purchase_total.to_i)
+			else
+				@order.update(:order_number => @serial, :order_total => @purchase_total.to_i)
+			end
 			session['purchase'] = nil
 			redirect "/order/#{@order.id}"
 		end
