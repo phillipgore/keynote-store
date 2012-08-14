@@ -22,7 +22,7 @@
 			<td><%= order.order_newsletter %></td>
 			<td><%= order.order_total %></td>
 			<td><%= order.order_discount %></td>
-			<td><%= (@order.order_total.to_i - (@order.order_total.to_i * @order.order_discount)).to_i %></td>
+			<td><%= (order.order_total.to_i - (order.order_total.to_i * order.order_discount)).to_i %></td>
 			<td><%= order.token %></td>
 		<% end %>
 	</table>
