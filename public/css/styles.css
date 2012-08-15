@@ -766,6 +766,11 @@ select {
 	color: #666;
 }
 
+#admin .gray_button, #admin .gray_button:hover {
+	color: white;
+	text-decoration: none;
+}
+
 /*#admin table {
 	font-size: 12px;
 	color: #000;
