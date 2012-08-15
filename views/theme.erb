@@ -4,7 +4,7 @@
 	<div class="theme_video">
 		<h3><%= @theme.name %></h3>
 		<a href="/buy/<%= @theme.id %>" class="blue_button">Buy - $<%= @theme.price %></a>
-		<img class="video_poster" width="760" height="428" src="/images/poster-<%= @theme.name.downcase.gsub(" ", "-") %>.jpg" />
+		<img class="video_poster" width="760" height="428" src="/images/poster-<%= @theme.name.downcase.gsub(" ", "-") %>.png" />
 <!-- Settings for exporting videos with Handbrake: Web Optimized, Constant Frame Rate, Constant Quality, RF 15, 760x428 -->
 		<video class="video" width="760" height="428" preload="auto" >
 		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @theme.name.downcase.gsub(" ", "_") %>.ogv" type='video/ogg; codecs="theora, vorbis"' />
