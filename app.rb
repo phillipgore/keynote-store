@@ -325,15 +325,16 @@ class TheKeynoteStore < Sinatra::Base
 	end
 	
 	get '/admin/orders' do
-		@heading = "Orders."
+		@heading = "Find Orders."
 		@order = Order.all()
 		erb :admin_orders, :layout => :admin
 	end
 	
-	get '/delete/orders' do
-		Order.all().destroy!
-		Purchase.all().destroy!
-		redirect "/admin/orders"
+	get '/admin/receipt/:id' do
+		@heading = "Review Receipt."
+		@order = Order.get(params[:id])
+		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
+		erb :admin_receipt, :layout => :admin
 	end
 		
 	

@@ -1,0 +1,50 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="content">
+
+	<h3><%= @order.order_first_name %> <%= @order.order_last_name  %></h3>
+	<h6>Email: <%= @order.order_email  %></h6>
+	<h6>Date: <%= @order.created_at.strftime("%B %d, %Y") %></h6>
+	<h6>Invoice: 000-<%= @order.id %></h6>
+	<table id="invoice">
+		<tr>
+			<th>Theme</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Totals</th>
+		</tr>
+		<% @purchase.each do |purchase| %>
+			<tr class="no_hover">
+				<td><%= purchase.item_name %></td>
+				<td class="text_align_center"><%= purchase.item_quantity %></td>
+				<td class="text_align_right">$<%= purchase.item_price %></td>
+				<td class="text_align_right">$<%= purchase.item_quantity * purchase.item_price %></td>
+			</tr>
+		<% end %>
+		<% if @order.order_discount != 0 %>
+			<tr class="text_align_right no_hover">
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="fixed_column">total: $<%= @order.order_total %></td>
+			</tr>
+			<tr class="text_align_right no_hover">
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td>discount: <%= (@order.order_discount * 100).to_i %>%</td>
+			</tr>
+		<% end %>
+			<tr class="text_align_right no_hover">
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="fixed_column">total: $<%= (@order.order_total.to_i - (@order.order_total.to_i * @order.order_discount)).to_i %></td>
+			</tr>
+	</table>
+	
+	<div class="button_container">
+		<a id="print" class="gray_button float_right" href="/print/order/<%= @order.id %>">printable receipt</a>
+	</div>
+	
+</div>

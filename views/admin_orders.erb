@@ -5,29 +5,31 @@
 	<table>
 		<tr>
 			<th>Date</th>
+			<th>Time</th>
 			<th>Name</th>
 			<th>Email</th>
 			<th>Newsletter</th>
 			<th>Total</th>
 			<th>Discount</th>
 			<th>Charged</th>
-			<th>Token</th>
+			<th>Receipt</th>
 		</tr>
 		<% @order.each do |order| %>
 		<tr>
-			<td><%= order.created_at.strftime("%m/%d/%y at %l:%M %P") %></td>
+			<td class="text_align_center"><%= order.created_at.strftime("%m/%d/%y") %></td>
+			<td class="text_align_center"><%= order.created_at.strftime("%l:%M %P") %></td>
 			<td><%= order.order_first_name %> <%= order.order_last_name %></td>
 			<td><%= order.order_email %></td>
-			<td><% if order.order_newsletter == true %>
+			<td class="text_align_center"><% if order.order_newsletter == true %>
 					yes
 				<% else %>
 					no
 				<% end %>
 			</td>
-			<td><%= order.order_total %></td>
-			<td><%= order.order_discount %></td>
-			<td><%= (order.order_total.to_i - (order.order_total.to_i * order.order_discount)).to_i %></td>
-			<td><%= order.stripe_token %></td>
+			<td class="text_align_right">$<%= order.order_total %></td>
+			<td class="text_align_right"><%= (order.order_discount * 100).to_i %>%</td>
+			<td class="text_align_right">$<%= (order.order_total.to_i - (order.order_total.to_i * order.order_discount)).to_i %></td>
+			<td class="text_align_center"><a class="edit" href="/admin/receipt/<%= order.id %>">view</a></td>
 		</tr>
 		<% end %>
 	</table>
