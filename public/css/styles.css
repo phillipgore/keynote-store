@@ -188,7 +188,6 @@ h6 {
 }
 
 .theme_video {
-	border-bottom: 1px solid #999;
 	position: relative;
 }
 
@@ -436,8 +435,8 @@ tr:hover {
 
 #theme_info {
 	display: inline-block;
+	border-top: 1px solid #999;
 	border-bottom: 1px solid #999;
-	margin-bottom: 36px;
 }
 
 .complete_info {
@@ -455,10 +454,10 @@ tr:hover {
 }
 
 .theme_stats {
-	padding-top: 36px;
-	padding-bottom: 36px;
 	width: 258px;
 	float: left;
+	padding-top: 36px;
+	padding-bottom: 36px;
 }
 
 .theme_stats ul {
@@ -468,25 +467,23 @@ tr:hover {
 .theme_description {
 	width: 429px;
 	float: left;
-	padding-top: 36px;
-	padding-bottom: 36px;
 	padding-left: 36px;
 	margin-left: 36px;
 	border-left: 1px solid #999;
+	padding-top: 36px;
+	padding-bottom: 36px;
 }
 
 .theme_layouts {
 	margin-right: -12px;
 	display: inline-block;
-	padding-bottom: 27px;
+	padding-top: 36px;
+	padding-bottom: 36px;
+	border-bottom: 1px solid #999;
 }
 
 .theme_layouts img {
-	margin-right: 8px;
-	margin-bottom: 8px;
-	display: block;
-	float: left;
-	box-shadow: 0 0 2px #333;
+	margin: -10px 0 -10px -10px;
 }
 
 #complete .theme_layouts img {
@@ -516,6 +513,11 @@ tr:hover {
 .button_container {
 	margin-top: 36px;
 	height: 29px;
+}
+
+.theme_button_container {
+	height: 23px;
+	padding-top: 42px;
 }
 
 form {

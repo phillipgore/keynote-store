@@ -120,8 +120,6 @@ class TheKeynoteStore < Sinatra::Base
 	
 	get '/theme/:id' do
 		@theme = Theme.get(params[:id])
-		@dir = Dir.pwd
-		@slides = Dir.entries("#{@dir}/public/images/slides_#{@theme.name.downcase.gsub(" ", "_")}")
 		@heading_selector = Random.rand(8)
 		@heading_array = ["Good Choice.", "Great Pick.", "Nice Thinking.", "We Agree.", "Love it.", "Yes.", "Awesome.", "Great Idea."]
 		@heading = @heading_array[@heading_selector]
@@ -335,14 +333,6 @@ class TheKeynoteStore < Sinatra::Base
 		@order = Order.get(params[:id])
 		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
 		erb :admin_receipt, :layout => :admin
-	end
-	
-	get '/images/:id' do
-		@heading = "Images."
-		@theme = Theme.get(params[:id])
-		@dir = Dir.pwd
-		@slides = Dir.entries("#{@dir}/public/images/slides_#{@theme.name.downcase.gsub(" ", "_")}")
-		erb :images_layout
 	end
 		
 	

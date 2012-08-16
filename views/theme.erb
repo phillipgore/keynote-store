@@ -60,19 +60,15 @@
 		</div>		
 	</div>
 	
-	<div id="theme_info">
-		<div class="theme_layouts"> 
-			<h4>Slide Layouts</h4>
-			<% @slides.each do |slide| %>
-				<% if slide.end_with? "png" %>
-					<img src="../images/slides_<%= @theme.name.downcase.gsub(" ", "_") %>/<%= slide %>" width="88px"/>
-				<% end %>
-			<% end %>
-		</div>
-	</div>
 	
-	<a href="/buy/<%= @theme.id %>" class="blue_button">Buy <%= @theme.name %> - $<%= @theme.price %></a>
-	<span class="discount">Buy any three themes and receive a 10% discount.</span>
+	<div class="theme_layouts"> 
+		<h4>Slide Layouts</h4>
+		<img src="../images/slides-<%= @theme.name.downcase.gsub(" ", "-") %>.png" />
+	</div>
+	<div class="theme_button_container">
+		<a href="/buy/<%= @theme.id %>" class="blue_button">Buy <%= @theme.name %> - $<%= @theme.price %></a>
+		<span class="discount">Buy any three themes and receive a 10% discount.</span>
+	</div>
 </div>
 
 <div class="product_container">
