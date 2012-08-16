@@ -812,71 +812,67 @@ select {
 }
 
 #complete_set {
-	background: url('../images/tcs-rotate.png') no-repeat -109px -105px white;
+	background: url('../images/theme-rotate-sprite.png') no-repeat -85px -4055px white;
 }
 
 #complete_long {
 	background: url('../images/tcs-rotate-long.png') no-repeat -65px -90px white;
 }
 
-#frames {
-	background: url('../images/fr-rotate.png') no-repeat -149px -59px white;
-}
-
-#contemporary {
-	background: url('../images/ct-rotate.png') no-repeat -149px -59px white;
-}
-
-#classic {
-	background: url('../images/cl-rotate.png') no-repeat -149px -59px white;
-}
-
-#take_two {
-	background: url('../images/tt-rotate.png') no-repeat -149px -59px white;
-}
-
-#photogenic {
-	background: url('../images/ph-rotate.png') no-repeat -149px -59px white;
+#cardboard {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -59px white;
 }
 
 #concrete {
-	background: url('../images/cc-rotate.png') no-repeat -149px -59px white;
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -343px white;
 }
 
-#cardboard {
-	background: url('../images/cb-rotate.png') no-repeat -149px -59px white;
+#classic {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -627px white;
 }
 
-#lightly_serious {
-	background: url('../images/ls-rotate.png') no-repeat -149px -59px white;
-}
-
-#seriously_light {
-	background: url('../images/sl-rotate.png') no-repeat -149px -59px white;
-}
-
-#grunge {
-	background: url('../images/gr-rotate.png') no-repeat -149px -59px white;
+#contemporary {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -911px white;
 }
 
 #distressed {
-	background: url('../images/ds-rotate.png') no-repeat -149px -59px white;
-}
-
-#keynote_tv {
-	background: url('../images/kt-rotate.png') no-repeat -149px -59px white;
-}
-
-#keynote_x {
-	background: url('../images/kx-rotate.png') no-repeat -149px -59px white;
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -1195px white;
 }
 
 #ebony_sophisticate {
-	background: url('../images/es-rotate.png') no-repeat -149px -59px white;
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -1479px white;
+}
+
+#grunge {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -1765px white;
 }
 
 #ivory_sophisticate {
-	background: url('../images/is-rotate.png') no-repeat -149px -59px white;
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -2047px white;
+}
+
+#keynote_tv {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -2331px white;
+}
+
+#keynote_x {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -2615px white;
+}
+
+#lightly_serious {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -2899px white;
+}
+
+#photogenic {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -3183px white;
+}
+
+#seriously_light {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -3467px white;
+}
+
+#take_two {
+	background: url('../images/theme-rotate-sprite.png') no-repeat -149px -3751px white;
 }
 
 /* @end */

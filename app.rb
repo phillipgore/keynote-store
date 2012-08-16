@@ -336,6 +336,14 @@ class TheKeynoteStore < Sinatra::Base
 		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
 		erb :admin_receipt, :layout => :admin
 	end
+	
+	get '/images/:id' do
+		@heading = "Images."
+		@theme = Theme.get(params[:id])
+		@dir = Dir.pwd
+		@slides = Dir.entries("#{@dir}/public/images/slides_#{@theme.name.downcase.gsub(" ", "_")}")
+		erb :images_layout
+	end
 		
 	
 	

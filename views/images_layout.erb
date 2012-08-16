@@ -1,0 +1,9 @@
+<div class="content">	
+		<div class="theme_layouts"> 
+			<% @slides.each do |slide| %>
+				<% if slide.end_with? "png" %>
+					<img src="../images/slides_<%= @theme.name.downcase.gsub(" ", "_") %>/<%= slide %>" width="88px"/>
+				<% end %>
+			<% end %>
+		</div>
+</div>
