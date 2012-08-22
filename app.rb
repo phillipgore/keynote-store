@@ -8,6 +8,7 @@ require 'dm-validations'
 require 'bcrypt'
 require 'sinatra/flash'
 require 'stripe'
+require 'aws-sdk'
 require './models'
 require './app'
 
@@ -90,15 +91,33 @@ class TheKeynoteStore < Sinatra::Base
 				)
 			end
 			session['purchase'] = nil
-			redirect "/order/#{@order.id}"
+			redirect "/order/#{@order.order_number}/#{@order.id}"
 		end
 	end
 	
-	get '/order/:id' do
+	get '/order/:number/:id' do
 		@heading = "Thank You."
 		@order = Order.get(params[:id])
 		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
 		erb :order_summary
+	end
+	
+	get '/download/:number/:id' do
+		@order = Order.get(params[:id])
+		if (@order.order_number == params[:number].to_i) && ((DateTime.now - @order.created_at) * 24).to_f < 24
+			@s3 = AWS::S3.new(
+				:access_key_id => 'AKIAJYQDOD2J6XAH77QQ',
+				:secret_access_key => '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'
+			)
+			@bucket = @s3.buckets['keynote_themes']
+			File.open('Cardboard.zip','wb') do |file|
+				@bucket.objects['Cardboard.zip'].read do |chunk|
+					file.write(chunk)
+				end
+			end
+			send_file('Cardboard.zip', :type => 'application/octet-stream')
+			File.delete('Cardboard.zip')
+		end
 	end
 	
 	get '/print/order/:id' do
@@ -106,6 +125,10 @@ class TheKeynoteStore < Sinatra::Base
 		@order = Order.get(params[:id])
 		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
 		erb :print_order_summary, :layout => false
+	end
+	
+	get '/free' do
+		erb :freebies
 	end
 	
 	get '/support' do

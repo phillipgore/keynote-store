@@ -19,7 +19,11 @@
 		<% @purchase.each do |purchase| %>
 			<tr class="no_hover">
 				<td><%= purchase.item_name %></td>
-				<td class="text_align_center"><a class="download" href="#">download theme (24 hour limit)</a></td>
+				<% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
+					<td class="text_align_center"><a class="download" href="/download/<%= @order.order_number %>/<%= @order.id %>">download theme (<%= 24 - ((DateTime.now - @order.created_at) * 24).to_i %> hours left)</a></td>
+				<% else %>
+					<td class="text_align_center">download expired</td>
+				<% end %>
 				<td class="text_align_center"><%= purchase.item_quantity %></td>
 				<td class="text_align_right">$<%= purchase.item_price %></td>
 				<td class="text_align_right">$<%= purchase.item_quantity * purchase.item_price %></td>
