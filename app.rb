@@ -9,6 +9,8 @@ require 'bcrypt'
 require 'sinatra/flash'
 require 'stripe'
 require 'aws-sdk'
+require 'pony'
+
 require './models'
 require './app'
 
@@ -60,6 +62,10 @@ class TheKeynoteStore < Sinatra::Base
 
 	
 # Theme Site
+	get '/email' do
+		erb :email, :layout => false
+	end
+
 	get '/' do
 		@heading = "Welcome."
 		erb :index
@@ -97,6 +103,60 @@ class TheKeynoteStore < Sinatra::Base
 					:item_url => @url
 				)
 			end
+			Pony.mail(
+			      :from => 'The Keynote Store <phillipagore@me.com>',
+			      :to => "#{@order.order_email}",
+			      :subject => 'Your order from The Keynote Store. Thanks!',
+			      :headers => { 'Content-Type' => 'text/html' },
+			      :body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>  
+			      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>  
+			      		<td>#{@order.order_first_name},</td>  
+			      	</tr>
+			      	<tr>
+			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      	</tr>
+			      	<tr>  
+			      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>  
+			      	</tr>
+			      	<tr>
+			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      	</tr>  
+			      	<tr>  
+			      		<td><a href='http://www.keynotestoer.heroku.com/order/#{@order.order_number}/#{@order.id}'><img src='http://www.keynotestoer.heroku.com/public/images/button-email-order.png' alt='Your Order.'></a></td>  
+			      	</tr>
+			      	<tr>
+			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      	</tr>
+			      	<tr>
+			      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at support@keynotestore.com.</td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      	</tr>
+			      	<tr>  
+			      		<td style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>Thank You!</td>
+			      	</tr>
+			      	<tr>
+			      		<td>The Keynote Store</td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      	</tr>
+			      </table>",
+			      :port => '587',
+			      :via => :smtp,
+			      :via_options => { 
+			        :address              => 'smtp.sendgrid.net', 
+			        :port                 => '587', 
+			        :enable_starttls_auto => true, 
+			        :user_name            => 'phillipagore@me.com', 
+			        :password             => 'Vandalia6578', 
+			        :authentication       => :plain, 
+			        :domain               => 'keynotestore.heroku.com'
+			      })
 			session['purchase'] = nil
 			redirect "/order/#{@order.order_number}/#{@order.id}"
 		end
