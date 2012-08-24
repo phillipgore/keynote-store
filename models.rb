@@ -71,6 +71,7 @@ class Purchase
 	property :item_id, 			Integer
 	property :item_quantity, 	Integer
 	property :item_price, 		Integer
+	property :item_url, 		Text
 	
 	belongs_to :order
 

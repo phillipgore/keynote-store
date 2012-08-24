@@ -83,11 +83,18 @@ class TheKeynoteStore < Sinatra::Base
 			)
 			@purchase_hash.each do |key, value|
 				@theme = Theme.get(key.to_i)
+				AWS.config(
+					:access_key_id => 'AKIAJYQDOD2J6XAH77QQ',
+					:secret_access_key => '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'
+				)
+				@s3 = AWS::S3.new
+				@url = @s3.buckets['keynote_themes'].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
 				@purchase = @order.purchases.create(
 					:item_name => @theme.name,
 					:item_id => @theme.id,
 					:item_quantity => value.to_i,
-					:item_price => @theme.price
+					:item_price => @theme.price,
+					:item_url => @url
 				)
 			end
 			session['purchase'] = nil
@@ -102,24 +109,6 @@ class TheKeynoteStore < Sinatra::Base
 		erb :order_summary
 	end
 	
-	get '/download/:number/:id' do
-		@order = Order.get(params[:id])
-		if (@order.order_number == params[:number].to_i) && ((DateTime.now - @order.created_at) * 24).to_f < 24
-			@s3 = AWS::S3.new(
-				:access_key_id => 'AKIAJYQDOD2J6XAH77QQ',
-				:secret_access_key => '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'
-			)
-			@bucket = @s3.buckets['keynote_themes']
-			File.open('Cardboard.zip','wb') do |file|
-				@bucket.objects['Cardboard.zip'].read do |chunk|
-					file.write(chunk)
-				end
-			end
-			send_file('Cardboard.zip', :type => 'application/octet-stream')
-			File.delete('Cardboard.zip')
-		end
-	end
-	
 	get '/print/order/:id' do
 		@heading = "Thank You."
 		@order = Order.get(params[:id])
@@ -128,6 +117,7 @@ class TheKeynoteStore < Sinatra::Base
 	end
 	
 	get '/free' do
+		@heading = "Please, Help Yourself."
 		erb :freebies
 	end
 	
