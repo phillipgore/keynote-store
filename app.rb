@@ -113,25 +113,25 @@ class TheKeynoteStore < Sinatra::Base
 			      		<td>#{@order.order_first_name},</td>  
 			      	</tr>
 			      	<tr>
-			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      		<td><img src='http://www.keynotestore.heroku.com/public/images/spacer.png'></td>
 			      	</tr>
 			      	<tr>  
 			      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>  
 			      	</tr>
 			      	<tr>
-			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      		<td><img src='http://www.keynotestore.heroku.com/public/images/spacer.png'></td>
 			      	</tr>  
 			      	<tr>  
-			      		<td><a href='http://www.keynotestoer.heroku.com/order/#{@order.order_number}/#{@order.id}'><img src='http://www.keynotestoer.heroku.com/public/images/button-email-order.png' alt='Your Order.'></a></td>  
+			      		<td><a href='http://www.keynotestore.heroku.com/order/#{@order.order_number}/#{@order.id}'><img src='http://www.keynotestore.heroku.com/public/images/button-email-order.png' alt='Your Order.'></a></td>  
 			      	</tr>
 			      	<tr>
-			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      		<td><img src='http://www.keynotestore.heroku.com/public/images/spacer.png'></td>
 			      	</tr>
 			      	<tr>
 			      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at support@keynotestore.com.</td>
 			      	</tr>
 			      	<tr>
-			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      		<td><img src='http://www.keynotestore.heroku.com/public/images/spacer.png'></td>
 			      	</tr>
 			      	<tr>  
 			      		<td style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>Thank You!</td>
@@ -140,10 +140,10 @@ class TheKeynoteStore < Sinatra::Base
 			      		<td>The Keynote Store</td>
 			      	</tr>
 			      	<tr>
-			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      		<td><img src='http://www.keynotestore.heroku.com/public/images/spacer.png'></td>
 			      	</tr>
 			      	<tr>
-			      		<td><img src='http://www.keynotestoer.heroku.com/public/images/spacer.png'></td>
+			      		<td><img src='http://www.keynotestore.heroku.com/public/images/spacer.png'></td>
 			      	</tr>
 			      </table>",
 			      :port => '587',
