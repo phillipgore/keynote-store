@@ -128,7 +128,7 @@ class TheKeynoteStore < Sinatra::Base
 			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
 			      	</tr>
 			      	<tr>
-			      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at <a style="color: #1E4CB1; text-decoration: none;" href="mailto:support@keynotestore.com?Subject=Keynote%20Theme%20Support">support@keynotestore.com</a>.</td>
+			      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at <a style='color: #1E4CB1; text-decoration: none;' href='mailto:support@keynotestore.com?Subject=Keynote%20Theme%20Support'>support@keynotestore.com</a>.</td>
 			      	</tr>
 			      	<tr>
 			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
@@ -408,6 +408,7 @@ class TheKeynoteStore < Sinatra::Base
 		erb :admin_receipt, :layout => :admin
 	end
 		
-		
+	
+	
 	TheKeynoteStore.run!
 end
