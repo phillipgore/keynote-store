@@ -408,7 +408,6 @@ class TheKeynoteStore < Sinatra::Base
 		erb :admin_receipt, :layout => :admin
 	end
 		
-	
-	
+		
 	TheKeynoteStore.run!
 end
