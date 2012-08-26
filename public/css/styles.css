@@ -259,6 +259,10 @@ p {
 	text-align: justify;
 }
 
+.support {
+	margin-bottom: 45px;
+}
+
 p:last-child {
 	margin-bottom: 0px;
 }
@@ -414,7 +418,7 @@ tr:hover {
 	width: 124px;
 }
 
-.update, .remove, .download {
+.update, .remove {
 	font-size: 12px;
 	color: #666;
 	text-decoration: none;
@@ -425,8 +429,24 @@ tr:hover {
 	font-style: normal;
 }
 
-.update:hover, .download:hover {
+.update:hover {
 	color: #0fbf17;
+}
+
+.download {
+	color: white;
+	border-radius: 4px;
+	text-decoration: none;
+	text-align: center;
+	margin-top: 0;
+	background: url('../images/button-gradiant-small.png') repeat-x 0 center;
+	border: 1px solid #0003ab;
+	text-shadow: 0 0 1px #0003ab;
+	font-size: 1em;
+	width: 216px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	display: inline-block;
 }
 
 .remove:hover {

@@ -34,20 +34,20 @@
 					<td class="no_border"></td>
 					<td class="no_border"></td>
 					<td class="no_border"></td>
-					<td class="fixed_column">total: $<%= @order.order_total %></td>
+					<td class="fixed_column">Total: $<%= @order.order_total %></td>
 				</tr>
 				<tr class="text_align_right no_hover">
 					<td class="no_border"></td>
 					<td class="no_border"></td>
 					<td class="no_border"></td>
-					<td>discount: <%= (@order.order_discount * 100).to_i %>%</td>
+					<td>Discount: <%= (@order.order_discount * 100).to_i %>%</td>
 				</tr>
 			<% end %>
 				<tr class="text_align_right no_hover">
 					<td class="no_border"></td>
 					<td class="no_border"></td>
 					<td class="no_border"></td>
-					<td class="fixed_column">total: $<%= (@order.order_total.to_i - (@order.order_total.to_i * @order.order_discount)).to_i %></td>
+					<td class="fixed_column">Total: $<%= (@order.order_total.to_i - (@order.order_total.to_i * @order.order_discount)).to_i %></td>
 				</tr>
 		</table>
 		
