@@ -161,7 +161,7 @@ class TheKeynoteStore < Sinatra::Base
 				        :address              => 'smtp.sendgrid.net', 
 				        :port                 => '587', 
 				        :enable_starttls_auto => true, 
-				        :user_name            => 'sales@keynotestore.com', 
+				        :user_name            => 'keynotestore.com', 
 				        :password             => 'Vandalia6578', 
 				        :authentication       => :plain, 
 				        :domain               => 'www.keynotestore.com'
