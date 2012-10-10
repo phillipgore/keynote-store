@@ -58,6 +58,14 @@ class TheKeynoteStore < Sinatra::Base
 			end
 		end
 	end
+	
+	not_found do
+		erb :not_found
+	end
+	
+	error do
+		"Y U NO WORK?"
+	end
 
 
 	
@@ -78,87 +86,92 @@ class TheKeynoteStore < Sinatra::Base
 	end
 		
 	post '/payment' do
-		@order =  Order.new(params[:order])
-		if @order.save
-			Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
-			@charge = Stripe::Charge.create(
-			  :amount => @amount,
-			  :currency => "usd",
-			  :card => @order.stripe_token,
-			  :description => @order.order_email
-			)
-			@purchase_hash.each do |key, value|
-				@theme = Theme.get(key.to_i)
-				AWS.config(
-					:access_key_id => 'AKIAJYQDOD2J6XAH77QQ',
-					:secret_access_key => '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'
+		begin
+			@order =  Order.new(params[:order])
+			if @order.save
+				Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
+				@charge = Stripe::Charge.create(
+				  :amount => @amount,
+				  :currency => "usd",
+				  :card => @order.stripe_token,
+				  :description => @order.order_email
 				)
-				@s3 = AWS::S3.new
-				@url = @s3.buckets['keynote_themes'].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
-				@purchase = @order.purchases.create(
-					:item_name => @theme.name,
-					:item_id => @theme.id,
-					:item_quantity => value.to_i,
-					:item_price => @theme.price,
-					:item_url => @url
-				)
+				@purchase_hash.each do |key, value|
+					@theme = Theme.get(key.to_i)
+					AWS.config(
+						:access_key_id => 'AKIAJYQDOD2J6XAH77QQ',
+						:secret_access_key => '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'
+					)
+					@s3 = AWS::S3.new
+					@url = @s3.buckets['keynote_themes'].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
+					@purchase = @order.purchases.create(
+						:item_name => @theme.name,
+						:item_id => @theme.id,
+						:item_quantity => value.to_i,
+						:item_price => @theme.price,
+						:item_url => @url
+					)
+				end
+				Pony.mail(
+				      :from => 'The Keynote Store <sales@keynotestore.com>',
+				      :to => "#{@order.order_email}",
+				      :subject => 'Your order from The Keynote Store. Thanks!',
+				      :headers => { 'Content-Type' => 'text/html' },
+				      :body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>  
+				      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>  
+				      		<td>#{@order.order_first_name},</td>  
+				      	</tr>
+				      	<tr>
+				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+				      	</tr>
+				      	<tr>  
+				      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>  
+				      	</tr>
+				      	<tr>
+				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+				      	</tr>  
+				      	<tr>  
+				      		<td><a href='http://keynotestore.herokuapp.com/order/#{@order.order_number}/#{@order.id}'><img src='https://s3.amazonaws.com/keynote_store/button-email-order.png' alt='Your Order.'></a></td>  
+				      	</tr>
+				      	<tr>
+				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+				      	</tr>
+				      	<tr>
+				      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at <a style='color: #1E4CB1; text-decoration: none;' href='mailto:support@keynotestore.com?Subject=Keynote%20Theme%20Support'>support@keynotestore.com</a>.</td>
+				      	</tr>
+				      	<tr>
+				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+				      	</tr>
+				      	<tr>  
+				      		<td style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>Thank You!</td>
+				      	</tr>
+				      	<tr>
+				      		<td>The Keynote Store</td>
+				      	</tr>
+				      	<tr>
+				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+				      	</tr>
+				      	<tr>
+				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+				      	</tr> 
+				      </table>",
+				      :port => '587',
+				      :via => :smtp,
+				      :via_options => { 
+				        :address              => 'smtp.sendgrid.net', 
+				        :port                 => '587', 
+				        :enable_starttls_auto => true, 
+				        :user_name            => 'sales@keynotestore.com', 
+				        :password             => 'Vandalia6578', 
+				        :authentication       => :plain, 
+				        :domain               => 'www.keynotestore.com'
+				      })
+				session['purchase'] = nil
+				redirect "/order/#{@order.order_number}/#{@order.id}"
 			end
-			Pony.mail(
-			      :from => 'The Keynote Store <phillipagore@me.com>',
-			      :to => "#{@order.order_email}",
-			      :subject => 'Your order from The Keynote Store. Thanks!',
-			      :headers => { 'Content-Type' => 'text/html' },
-			      :body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>  
-			      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>  
-			      		<td>#{@order.order_first_name},</td>  
-			      	</tr>
-			      	<tr>
-			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-			      	</tr>
-			      	<tr>  
-			      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>  
-			      	</tr>
-			      	<tr>
-			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-			      	</tr>  
-			      	<tr>  
-			      		<td><a href='http://keynotestore.herokuapp.com/order/#{@order.order_number}/#{@order.id}'><img src='https://s3.amazonaws.com/keynote_store/button-email-order.png' alt='Your Order.'></a></td>  
-			      	</tr>
-			      	<tr>
-			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-			      	</tr>
-			      	<tr>
-			      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at <a style='color: #1E4CB1; text-decoration: none;' href='mailto:support@keynotestore.com?Subject=Keynote%20Theme%20Support'>support@keynotestore.com</a>.</td>
-			      	</tr>
-			      	<tr>
-			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-			      	</tr>
-			      	<tr>  
-			      		<td style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>Thank You!</td>
-			      	</tr>
-			      	<tr>
-			      		<td>The Keynote Store</td>
-			      	</tr>
-			      	<tr>
-			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-			      	</tr>
-			      	<tr>
-			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-			      	</tr> 
-			      </table>",
-			      :port => '587',
-			      :via => :smtp,
-			      :via_options => { 
-			        :address              => 'smtp.sendgrid.net', 
-			        :port                 => '587', 
-			        :enable_starttls_auto => true, 
-			        :user_name            => 'phillipagore@me.com', 
-			        :password             => 'Vandalia6578', 
-			        :authentication       => :plain, 
-			        :domain               => 'keynotestore.heroku.com'
-			      })
-			session['purchase'] = nil
-			redirect "/order/#{@order.order_number}/#{@order.id}"
+		rescue Stripe::StripeError => e
+			flash.next[:notice] = "Sorry. #{e.message}"
+			redirect '/checkout'
 		end
 	end
 	

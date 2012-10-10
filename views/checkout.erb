@@ -65,7 +65,7 @@
 <% if session['purchase'] %>	
 <div class="content">	
 	<h4>Submit payment.</h4>
-	<h5 class="payment-errors"></h5>
+	<h5 class="payment-errors"><%= flash[:notice] %></h5>
 	<form action="/payment" method="POST" id="payment-form">
 		<fieldset>
 				<label class="name_label">First</label><label>Last</label><br>
