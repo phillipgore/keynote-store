@@ -131,7 +131,7 @@ class TheKeynoteStore < Sinatra::Base
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
 				      	</tr>  
 				      	<tr>  
-				      		<td><a href='http://keynotestore.herokuapp.com/order/#{@order.order_number}/#{@order.id}'><img src='https://s3.amazonaws.com/keynote_store/button-email-order.png' alt='Your Order.'></a></td>  
+				      		<td><a href='http://www.keynotestore.com/order/#{@order.order_number}/#{@order.id}'><img src='https://s3.amazonaws.com/keynote_store/button-email-order.png' alt='Your Order.'></a></td>  
 				      	</tr>
 				      	<tr>
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
