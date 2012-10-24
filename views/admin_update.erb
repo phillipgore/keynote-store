@@ -2,15 +2,13 @@
 
 <div class="content">
 	<div><%= flash[:notice] %></div>
-	<form method="post" action="/admin/update/<%= @theme.id %>">
+	<form action="/admin/update/theme/<%= @theme.id %>" method="post" id="theme" enctype="multipart/form-data">
 		<label>Name</label>
 		<input id="name" type="text" name="theme[name]" value="<%= @theme.name %>" /><br>
 		<label>Tagline</label>
 		<input id="tagline" type="text" name="theme[tagline]" value="<%= @theme.tagline %>" /><br>
-		<label>Created Date</label>
-		<input id="created_at" type="text" name="theme[created_at]" <% unless @theme.created_at = "" %>value="<%= @theme.created_at.strftime("%B %d, %Y") %>"<% end %> /><br>
 		<label>Price</label>
-		<input id="price" type="text" name="theme[price]" value="26.00" value="<%= @theme.price %>" /><br>
+		<input id="price" type="text" name="theme[price]" value="<%= @theme.price %>" /><br>
 		<label class="float_left">Style</label>
 		<textarea id="style" name="theme[style]" rows="10"><%= @theme.style %></textarea><br>
 		<label class="float_left">Extras</label>

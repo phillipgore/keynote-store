@@ -299,17 +299,17 @@ class TheKeynoteStore < Sinatra::Base
 		erb :admin_update, :layout => :admin
 	end
 	
-	post '/admin/update/:id' do
-		@update_theme = Theme.get(params[:id])
-		@update_theme.update(params[:theme])
-		if @update_theme.save
-			redirect '/admin/edit'
+	post '/admin/update/theme/:id' do
+		@theme = Theme.get(params[:id])
+		@theme.update(params[:theme])
+		if @theme.save
+			redirect "/admin/edit"
 		else
 			flash.now[:notice] = '<div id="flash">Hmm - Something went wrong. Better try again.</div>'
 		end
 		@heading = "Add A Theme."
 		@theme = Theme.all()
-		erb :admin_update, :layout => :admin
+		erb :admin_edit, :layout => :admin
 	end
 	
 	get '/admin/add' do
