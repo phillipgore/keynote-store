@@ -3,7 +3,7 @@
 	<% if @purchase_count == 0 %>
 		cart items: 0, total: $0
 	<% elsif @purchase_count > 2 %>
-		cart items: <%= @purchase_count %>, total: $<%= @purchase_total %> - 10% discount
+		cart items: <%= @purchase_count %>, total: $<%= @purchase_discount.to_i %> - 10% discount
 	<% else %>
 		cart items: <%= @purchase_count %>, total: $<%= @purchase_total %>
 	<% end %>
