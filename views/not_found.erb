@@ -1,1 +1,7 @@
-"Whoops! You requested a route that wasn't available."
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="content">
+	<div class="flash">You requested a route that isn't available.</div>
+</div>
+
+<%= erb :'products', :layout => false %>

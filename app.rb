@@ -60,6 +60,7 @@ class TheKeynoteStore < Sinatra::Base
 	end
 	
 	not_found do
+		@heading = "Whoops!"
 		erb :not_found
 	end
 	
