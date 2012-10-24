@@ -79,6 +79,11 @@ class TheKeynoteStore < Sinatra::Base
 		erb :index
 	end
 	
+	get '/catalogue' do
+		@heading = "Our Themes."
+		erb :catalogue
+	end
+	
 	get '/checkout' do
 		@heading = "Your Order."
 		@order_number = rand(1000000000000000..9999999999999999)

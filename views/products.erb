@@ -1,0 +1,5 @@
+<div class="product_container">
+	<% @theme.each do |theme| %>
+		<a id="<%= theme.name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= theme.id %>"><div class="product_name"><%= theme.name %></div></a>
+	<% end %>
+</div>
