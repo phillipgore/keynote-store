@@ -30,7 +30,7 @@ class TheKeynoteStore < Sinatra::Base
 	end
 	
 	before do
-		@theme = Theme.all(:order => [ :created_at.desc ])
+		@theme = Theme.all(:order => [ :id.desc ])
 		@complete_set = Theme.first(:name => "Complete Set")
 		if session['purchase']
 			@discount_percentage = 0.1
