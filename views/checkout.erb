@@ -58,7 +58,30 @@
 		<% end %>
 		</table>
 	<% else %>
-		<h2>Your cart is currently empty.</h2>
+		<h4>Your cart is empty.</h4>
+		<table>
+			<tr>
+				<th class="text_align_left">Theme</th>
+				<th>Remove</th>
+				<th>Quantity</th>
+				<th class="text_align_right">Price</th>
+				<th class="text_align_right">Totals</th>
+			</tr>
+			<tr>
+				<td>Empty.</td>
+				<td class="text_align_center fixed_column"></td>
+				<td class="text_align_center fixed_column"></td>
+				<td class="text_align_right fixed_column"></td>
+				<td class="text_align_right fixed_column"></td>
+			</tr>
+			<tr class="text_align_right no_hover">
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="no_border"></td>
+				<td class="fixed_column">$0.00</td>
+			</tr>
+		</table>
 	<% end %>
 </div>
 
