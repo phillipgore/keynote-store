@@ -38,21 +38,18 @@
 		<% if @theme_list.count > 2 %>
 			<label>Promotion One</label>
 			<select id="promo_one" name="theme[promo_one]">
-				<option value="5000">Complete Set Only</option>
 			  <% @theme_list.each do |theme_list| %>
 			  	<option <% if @theme.promo_one == theme_list.id %>selected="selected" <% end %> value="<%= theme_list.id %>"><%= theme_list.name %></option>
 			  <% end %>>
 			</select><br>
 			<label>Promotion Two</label>
 			<select id="promo_two" name="theme[promo_two]">
-				<option value="5000">Complete Set Only</option>
 			  <% @theme_list.each do |theme_list| %>
 			  	<option <% if @theme.promo_two == theme_list.id %>selected="selected" <% end %> value="<%= theme_list.id %>"><%= theme_list.name %></option>
 			  <% end %>
 			</select><br>
 			<label>Promotion Three</label>
 			<select id="promo_three" name="theme[promo_three]">
-				<option value="5000">Complete Set Only</option>
 			  <% @theme_list.each do |theme_list| %>
 			  	<option <% if @theme.promo_three == theme_list.id %>selected="selected" <% end %> value="<%= theme_list.id %>"><%= theme_list.name %></option>
 			  <% end %>

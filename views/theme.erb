@@ -2,13 +2,13 @@
 
 <div class="content">
 	<div class="theme_video">
-		<h3><%= @theme.name %></h3>
-		<a href="/buy/<%= @theme.id %>" class="blue_button">Buy - $<%= @theme.price %></a>
-		<img class="video_poster" width="760" height="428" src="/images/poster-<%= @theme.name.downcase.gsub(" ", "-") %>.png" />
+		<h3><%= @current_theme.name %></h3>
+		<a href="/buy/<%= @current_theme.id %>" class="blue_button">Buy - $<%= @current_theme.price %></a>
+		<img class="video_poster" width="760" height="428" src="/images/poster-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" />
 <!-- Settings for exporting videos with Handbrake: Web Optimized, Constant Frame Rate, Constant Quality, RF 15, 760x428 -->
 		<video class="video" width="760" height="428" preload="auto" >
-		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @theme.name.downcase.gsub(" ", "_") %>.ogv" type='video/ogg; codecs="theora, vorbis"' />
-		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @theme.name.downcase.gsub(" ", "_") %>.mp4" /> 
+		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.ogv" type='video/ogg; codecs="theora, vorbis"' />
+		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.mp4" /> 
 		  Your browser does not support the video tag.
 		</video>
 		<div class="video_controls">
@@ -24,65 +24,52 @@
 		<div class="theme_stats">
 			<h4>Statistics</h4>
 			<ul>
-			<% unless @theme.keynote_version == "" %>
-				<li>Keynote Version: <%= @theme.keynote_version %></li>
+			<% unless @current_theme.keynote_version == "" %>
+				<li>Keynote Version: <%= @current_theme.keynote_version %></li>
 			<% end %>
-			<% unless @theme.fonts == "" %>	
-				<li>Fonts: <%= @theme.fonts %></li>
+			<% unless @current_theme.fonts == "" %>	
+				<li>Fonts: <%= @current_theme.fonts %></li>
 			<% end %>
-			<% unless @theme.download_size == "" %>
-				<li>Download Size: <%= @theme.download_size %></li>
+			<% unless @current_theme.download_size == "" %>
+				<li>Download Size: <%= @current_theme.download_size %></li>
 			<% end %>
-			<% unless @theme.theme_sizes == "" %>
-				<li>Theme Sizes: <%= @theme.theme_sizes %></li>
+			<% unless @current_theme.theme_sizes == "" %>
+				<li>Theme Sizes: <%= @current_theme.theme_sizes %></li>
 			<% end %>
-			<% unless @theme.text_layouts == "" %>
-				<li>Text Layouts: <%= @theme.text_layouts %> Slides</li>
+			<% unless @current_theme.text_layouts == "" %>
+				<li>Text Layouts: <%= @current_theme.text_layouts %> Slides</li>
 			<% end %>
-			<% unless @theme.photo_layouts == "" %>
-				<li>Photo Layouts: <%= @theme.photo_layouts %> Slides</li>
+			<% unless @current_theme.photo_layouts == "" %>
+				<li>Photo Layouts: <%= @current_theme.photo_layouts %> Slides</li>
 			<% end %>
-			<% unless @theme.total_layouts == "" %>
-				<li>Total Layouts: <%= @theme.total_layouts %> Slides</li>
+			<% unless @current_theme.total_layouts == "" %>
+				<li>Total Layouts: <%= @current_theme.total_layouts %> Slides</li>
 			<% end %>
-			<% unless @theme.extras_slides == "" %>
-				<li>Extras: <%= @theme.extras_slides %> Slides</li>
+			<% unless @current_theme.extras_slides == "" %>
+				<li>Extras: <%= @current_theme.extras_slides %> Slides</li>
 			<% end %>
-			<% unless @theme.video_tutorial == "" %>
-				<li>Video Tutorial: <%= @theme.video_tutorial %></li>
+			<% unless @current_theme.video_tutorial == "" %>
+				<li>Video Tutorial: <%= @current_theme.video_tutorial %></li>
 			<% end %>
 			</ul>
 		</div>
 		<div class="theme_description">
 			<h4>Description</h4>
-			<p><%= @theme.style %></p>
-			<p><%= @theme.extras %></p>
+			<p><%= @current_theme.style %></p>
+			<p><%= @current_theme.extras %></p>
 		</div>		
 	</div>
 	
 	
 	<div class="theme_layouts"> 
 		<h4>Slide Layouts</h4>
-		<img src="../images/slides-<%= @theme.name.downcase.gsub(" ", "-") %>.png" />
+		<img src="../images/slides-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" />
 	</div>
 	<div class="theme_button_container">
-		<a href="/buy/<%= @theme.id %>" class="blue_button">Buy <%= @theme.name %> - $<%= @theme.price %></a>
+		<a href="/buy/<%= @current_theme.id %>" class="blue_button">Buy <%= @current_theme.name %> - $<%= @current_theme.price %></a>
 		<span class="discount">Buy any three themes and receive a 10% discount.</span>
 	</div>
 </div>
 
-<div class="product_container">
-	<% if @theme.promo_one == 5000 || @theme.promo_two == 5000 || @theme.promo_three == 5000 %>
-		<% unless @complete_set.nil? %>
-			<a id="complete_long" class="product_long" href="/theme/<%= @complete_set.name.downcase.gsub(" ", "_") %>"><div class="product_name"><%= @complete_set.name %></div></a>
-		<% end %>
-	<% else %>
-		<a id="<%= Theme.get(@theme.promo_one).name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @theme.promo_one %>"><div class="product_name"><%= Theme.get(@theme.promo_one).name %></div></a>
-		<a id="<%= Theme.get(@theme.promo_two).name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @theme.promo_two %>"><div class="product_name"><%= Theme.get(@theme.promo_two).name %></div></a>
-		<% if @theme.promo_one == 4000 || @theme.promo_two == 4000 || @theme.promo_three == 4000 %>
-			<a id="<%= @complete_set.name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @complete_set.name.downcase.gsub(" ", "_") %>"><div class="product_name"><%= @complete_set.name %></div></a>
-		<% else %>
-			<a id="<%= Theme.get(@theme.promo_three).name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @theme.promo_three %>"><div class="product_name"><%= Theme.get(@theme.promo_three).name %></div></a>
-		<% end %>
-	<% end %>
-</div>
+<%= erb :'promo', :layout => false %>
+

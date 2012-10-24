@@ -1,0 +1,5 @@
+<div class="product_container">
+		<a id="<%= @theme.get(@current_theme.promo_one).name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @current_theme.promo_one %>"><div class="product_name"><%= @theme.get(@current_theme.promo_one).name %></div></a>
+		<a id="<%= @theme.get(@current_theme.promo_two).name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @current_theme.promo_two %>"><div class="product_name"><%= @theme.get(@current_theme.promo_two).name %></div></a>
+		<a id="<%= @theme.get(@current_theme.promo_three).name.downcase.gsub(" ", "_") %>" class="product" href="/theme/<%= @current_theme.promo_three %>"><div class="product_name"><%= @theme.get(@current_theme.promo_three).name %></div></a>
+</div>

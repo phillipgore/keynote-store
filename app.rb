@@ -30,7 +30,7 @@ class TheKeynoteStore < Sinatra::Base
 	end
 	
 	before do
-		@theme = Theme.all(:name.not => "Complete Set", :order => [ :created_at.desc ])
+		@theme = Theme.all(:order => [ :created_at.desc ])
 		@complete_set = Theme.first(:name => "Complete Set")
 		if session['purchase']
 			@discount_percentage = 0.1
@@ -199,17 +199,17 @@ class TheKeynoteStore < Sinatra::Base
 		erb :support
 	end
 	
-	get '/theme/complete_set' do
-		@heading = "Take It All."
-		erb :complete
-	end
-	
 	get '/theme/:id' do
-		@theme = Theme.get(params[:id])
+		@current_theme = Theme.get(params[:id])
 		@heading_selector = Random.rand(8)
 		@heading_array = ["Good Choice.", "Great Pick.", "Nice Thinking.", "We Agree.", "Love it.", "Yes.", "Awesome.", "Great Idea."]
 		@heading = @heading_array[@heading_selector]
-		erb :theme
+		if @current_theme.name === "Complete Set"
+			@heading = "Take It All."
+			erb :complete
+		else
+			erb :theme
+		end
 	end
 	
 	get '/buy/:id' do
