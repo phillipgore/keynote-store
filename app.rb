@@ -95,7 +95,7 @@ class TheKeynoteStore < Sinatra::Base
 		begin
 			@order =  Order.new(params[:order])
 			if @order.save
-				Stripe.api_key = "zjoWY2fW3w8kktSKUGdmAsTGUzceCB5I"
+				Stripe.api_key = "wnhqYbLV0LvPFZlZCeKmPLW8MrhZjpwA"
 				@charge = Stripe::Charge.create(
 				  :amount => @amount,
 				  :currency => "usd",
