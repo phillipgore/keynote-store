@@ -1,23 +1,24 @@
 <%= erb :'banner_standard', :layout => false %>
 
-<div class="content">
-	<h4>Secure Checkout</h4>
-	<p class="support"><%= erb :'lorum_ipsum', :layout => false %></p>
-	
-	<h4>Download Issues</h4>
-	<p class="support"><%= erb :'lorum_ipsum', :layout => false %></p>
-	
-	<h4>Sample Presentation</h4>
-	<p class="support"><%= erb :'lorum_ipsum', :layout => false %></p>
-	
-	<h4>Keynote Support</h4>
-	<p class="support"><%= erb :'lorum_ipsum', :layout => false %></p>
+<div class="content" id="complete_set">
+	<div class="support">
+		<h4>Secure Checkout</h4>
+		<p>Our entire site is secured using encryption with a digital certificate to keep your information private as it's sent to or from keynotestore.com including every step of the payment process.</p>
+		
+		<h4>Sample Presentation</h4>
+		<p>The presentations shown on the individual theme pages are only samples of what can be achieved using Keynote and our custom themes. They are not included with any purchase. We are unable to provide them to any customers because many of the images are not licensed for resale.</p>
+		
+		<h4>Keynote Support</h4>
+		<p>We only support our themes. We do not support Keynote itself or provide any training for Keynote. Apple's website is full of great video tutorials and resources for learning how to use Keynote in both the Keynote section and the Support section of the site.</p>
+	</div>
 </div>
 
 <div class="product_container">
-	<a id="help" class="product" href="#"><div class="product_name">Help Email</div></a>
-	<a id="feedback" class="product" href="#"><div class="product_name">Feedback Email</div></a>
+	<a id="help" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Help"><div class="product_name">Help Email</div></a>
+	<a id="feedback" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Feedback"><div class="product_name">Feedback Email</div></a>
 	<% unless @complete_set.nil? %>
 		<a id="<%= @complete_set.name.downcase.gsub(" ", "_") %>" class="product" href="/theme/49"><div class="product_name"><%= @complete_set.name %></div></a>
 	<% end %>
 </div>
+
+<%= erb :'about', :layout => false %>

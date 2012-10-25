@@ -260,10 +260,6 @@ p {
 	text-align: justify;
 }
 
-.support {
-	margin-bottom: 45px;
-}
-
 p:last-child {
 	margin-bottom: 0px;
 }
@@ -642,6 +638,18 @@ select {
 	text-align: center;
 	margin-top: 36px;
 	margin-bottom: 36px;
+}
+
+.support {
+	margin-left: 180px;
+}
+
+.support p {
+	margin-bottom: 36px;
+}
+
+.support p:last-child {
+	margin-bottom: 0px;
 }
 
 /* @end */
