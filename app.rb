@@ -76,7 +76,7 @@ class TheKeynoteStore < Sinatra::Base
 	end
 
 	get '/' do
-		@heading = "Welcome."
+		@heading = "We Are Open."
 		erb :index
 	end
 	
