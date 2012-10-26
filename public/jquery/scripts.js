@@ -108,10 +108,6 @@ $(document).ready(function() {
 		  }
 	});
 	
-	$(window).on('load', function() {
-		$('#complete').parentsUntil('#container').parent().find('#complete_set').hide();
-	});
-	
 	$('#print').on('click', function(){
 		var url = $(this).attr('href');
 		window.open(url, width=612);

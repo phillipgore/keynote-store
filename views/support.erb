@@ -1,6 +1,6 @@
 <%= erb :'banner_standard', :layout => false %>
 
-<div class="content" id="complete_set">
+<div class="content" id="complete">
 	<div class="support">
 		<h4>Secure Checkout</h4>
 		<p>Our entire site is secured using encryption with a digital certificate to keep your information private as it's sent to or from keynotestore.com including every step of the payment process.</p>
@@ -19,9 +19,7 @@
 <div class="product_container">
 	<a id="help" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Help"><div class="product_name">Help Email</div></a>
 	<a id="feedback" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Feedback"><div class="product_name">Feedback Email</div></a>
-	<% unless @complete_set.nil? %>
-		<a id="<%= @complete_set.name.downcase.gsub(" ", "_") %>" class="product" href="/theme/49"><div class="product_name"><%= @complete_set.name %></div></a>
-	<% end %>
+	<a id="complete_set" class="product" href="/theme/49"><div class="product_name"><%= @complete_set.name %></div></a>
 </div>
 
 <%= erb :'about', :layout => false %>
