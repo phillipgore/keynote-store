@@ -4,7 +4,7 @@
 	<div class="theme_video">
 		<h3><%= @current_theme.name %></h3>
 		<a href="/buy/<%= @current_theme.id %>" class="blue_button">Buy - $<%= @current_theme.price %></a>
-		<img class="video_poster" width="760" height="428" src="/images/poster-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" />
+		<img class="video_poster" width="760" height="428" src="/images/poster-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= @current_theme.name %> a Custom Theme for Apple's Keynote Presentation Software"/>
 <!-- Settings for exporting videos with Handbrake: Web Optimized, Constant Frame Rate, Constant Quality, RF 15, 760x428 -->
 		<video class="video" width="760" height="428" preload="auto" >
 		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.ogv" type='video/ogg; codecs="theora, vorbis"' />
@@ -63,7 +63,7 @@
 	
 	<div class="theme_layouts"> 
 		<h4>Slide Layouts</h4>
-		<img src="../images/slides-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" />
+		<img src="../images/slides-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" alt="Slide Layouts for <%= @current_theme.name %> a Custom Theme for Apple's Keynote Presentation Software"/>
 	</div>
 	<div class="theme_button_container">
 		<a href="/buy/<%= @current_theme.id %>" class="blue_button">Buy <%= @current_theme.name %> - $<%= @current_theme.price %></a>
