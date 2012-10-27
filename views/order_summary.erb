@@ -23,10 +23,10 @@
 				<% else %>
 					<td class="text_align_center"><%= purchase.item_name %> Download Expired</td>
 				<% end %>
-				<% if ((DateTime.now - @order.created_at) * 24).to_i < 0 %>
-					<td class="text_align_center">Expired</td>
-				<% else %>
+				<% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
 					<td class="text_align_center"><%= (24 - (DateTime.now - @order.created_at) * 24).to_i %> hours</td>
+				<% else %>
+					<td class="text_align_center">Expired</td>
 				<% end %>	
 				<td class="text_align_center"><%= purchase.item_quantity %></td>
 				<td class="text_align_right">$<%= purchase.item_price %></td>
@@ -68,6 +68,6 @@
 	
 </div>
 
-<%= erb :'catalog', :layout => false %>
+<%= erb :'products', :layout => false %>
 
 <%= erb :'about', :layout => false %>
