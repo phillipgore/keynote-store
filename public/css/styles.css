@@ -354,8 +354,8 @@ video {
 }
 
 .product_long {
-	height: 166px;
 	width: 835px;
+	height: 224px;
 	margin-right: 36px;
 	float: left;
 	background: white;
@@ -363,6 +363,14 @@ video {
 	box-shadow: 0 0 6px #333;
 	margin-bottom: 36px;
 	text-decoration: none;
+	position: relative;
+}
+
+
+
+.long_info {
+	margin-left: 180px;
+	padding: 23px;
 }
 	
 .product_name {
@@ -651,6 +659,17 @@ select {
 
 .support p:last-child {
 	margin-bottom: 0px;
+}
+
+.catalogue_button_container {
+	height: 23px;
+	position: absolute;
+	right: 18px;
+	bottom: 23px;
+}
+
+.catalogue_button_container a {
+	margin-left: 9px;
 }
 
 /* @end */
