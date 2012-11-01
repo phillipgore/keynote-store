@@ -484,6 +484,7 @@ tr:hover {
 	float: left;
 	padding-top: 36px;
 	padding-bottom: 36px;
+	border-right: 1px solid #999;
 }
 
 .theme_stats ul {
@@ -495,7 +496,6 @@ tr:hover {
 	float: left;
 	padding-left: 36px;
 	margin-left: 36px;
-	border-left: 1px solid #999;
 	padding-top: 36px;
 	padding-bottom: 36px;
 }
