@@ -416,7 +416,7 @@ class TheKeynoteStore < Sinatra::Base
 	
 	get '/admin/orders' do
 		@heading = "Find Orders."
-		@order = Order.all()
+		@order = Order.all(:order => [ :created_at.desc ])
 		erb :admin_orders, :layout => :admin
 	end
 	
