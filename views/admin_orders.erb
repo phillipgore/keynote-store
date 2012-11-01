@@ -30,7 +30,7 @@
 			<td class="text_align_right"><%= (order.order_discount * 100).to_i %>%</td>
 			<td class="text_align_right">$<%= (order.order_total.to_i - (order.order_total.to_i * order.order_discount)).to_i %></td>
 			<td class="text_align_center"><a class="edit" href="/admin/receipt/<%= order.id %>">view</a></td>
-			<td class="text_align_center"><a class="delete" href="/admin/delete/order/<%= order.id %>">delete</a></td>
+			<!--<td class="text_align_center"><a class="delete" href="/admin/delete/order/<%= order.id %>">delete</a></td>-->
 		</tr>
 		<% end %>
 	</table>

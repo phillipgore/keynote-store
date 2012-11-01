@@ -420,10 +420,10 @@ class TheKeynoteStore < Sinatra::Base
 		erb :admin_orders, :layout => :admin
 	end
 	
-	get '/admin/delete/order/:id' do
-		@order = Order.get(params[:id]).destroy!
-		redirect "/admin/orders"
-	end
+#	get '/admin/delete/order/:id' do
+#		@order = Order.get(params[:id]).destroy!
+#		redirect "/admin/orders"
+#	end
 	
 	get '/admin/receipt/:id' do
 		@heading = "Review Receipt."
