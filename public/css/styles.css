@@ -484,6 +484,7 @@ tr:hover {
 	float: left;
 	padding-top: 36px;
 	padding-bottom: 36px;
+	padding-right: 36px;
 	border-right: 1px solid #999;
 }
 
@@ -495,7 +496,6 @@ tr:hover {
 	width: 429px;
 	float: left;
 	padding-left: 36px;
-	margin-left: 36px;
 	padding-top: 36px;
 	padding-bottom: 36px;
 }
