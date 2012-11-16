@@ -1,7 +1,16 @@
 <%= erb :'banner_standard', :layout => false %>
-
-<div class="content">
-
-
-
+<div class="product_container">
+	<% @theme.each do |theme| %>
+	<span  class="product_half <% if theme.name === "Complete Set" || theme.extras === "" %>hide<% end %>">
+		<div id="<%= theme.name.downcase.gsub(" ", "_") %>_extras" class="product_image"></div>
+		<div class="half_info">
+			<h4><%= theme.name %></h4>
+			<p><%= theme.extras %></p>
+		</div>
+		<span class="catalogue_button_container">
+			<a href="/theme/<%= theme.id %>" class="gray_button">Theme</a>
+			<a href="http://d3irottkalkrwf.cloudfront.net/<%= theme.name.downcase.gsub(" ", "_") %>_freebies.zip" class="blue_button">Download</a>
+		</span>
+	</span>
+	<% end %>
 </div>

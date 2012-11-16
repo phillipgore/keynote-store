@@ -366,10 +366,35 @@ video {
 	position: relative;
 }
 
+.product_half {
+	height: 271px;
+	width: 398px;
+	margin-right: 36px;
+	float: left;
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 0 6px #333;
+	margin-bottom: 36px;
+	text-decoration: none;
+	position: relative;
+}
 
+.product_image {
+	width: 168px;
+	height: 180px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
 
 .long_info {
 	margin-left: 180px;
+	padding: 23px;
+}
+
+.half_info {
+	margin-left: 160px;
 	padding: 23px;
 }
 	
@@ -498,6 +523,11 @@ tr:hover {
 	padding-left: 36px;
 	padding-top: 36px;
 	padding-bottom: 36px;
+}
+
+.theme_description .gray_button {
+	float: right;
+	margin-top: 15px;
 }
 
 .theme_layouts {
@@ -935,3 +965,59 @@ select {
 }
 
 /* @end */
+
+#cardboard_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -59px white;
+}
+
+#concrete_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -343px white;
+}
+
+#classic_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -627px white;
+}
+
+#contemporary_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -911px white;
+}
+
+#distressed_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -1195px white;
+}
+
+#ebony_sophisticate_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -1479px white;
+}
+
+#grunge_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -1765px white;
+}
+
+#ivory_sophisticate_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -2047px white;
+}
+
+#keynote_tv_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -2331px white;
+}
+
+#keynote_x_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -2615px white;
+}
+
+#lightly_serious_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -2899px white;
+}
+
+#photogenic_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -3183px white;
+}
+
+#seriously_light_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -3467px white;
+}
+
+#take_two_extras {
+	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -3751px white;
+}
