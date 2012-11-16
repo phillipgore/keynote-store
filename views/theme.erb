@@ -56,9 +56,6 @@
 		<div class="theme_description">
 			<h4>Description</h4>
 			<p><%= @current_theme.style %></p>
-			<% unless @current_theme.name === "Complete Set" || @current_theme.extras === "" %>
-				<a href="/free" class="gray_button"><%= @current_theme.name %> Freebies</a>
-			<% end %>
 		</div>		
 	</div>
 	
