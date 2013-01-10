@@ -72,7 +72,7 @@ class TheKeynoteStore < Sinatra::Base
 	
 # Theme Site
 	get '/' do
-		@heading = "We Are Open."
+		@heading = "Welcome."
 		erb :index
 	end
 	
@@ -194,6 +194,11 @@ class TheKeynoteStore < Sinatra::Base
 	get '/free' do
 		@heading = "Help Yourself."
 		erb :freebies
+	end
+	
+	get '/tutorials' do
+		@heading = "Tips & Tricks."
+		erb :tutorials
 	end
 	
 	get '/support' do

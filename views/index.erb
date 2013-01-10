@@ -1,9 +1,18 @@
 <%= erb :'banner_standard', :layout => false %>
 
-<div class="content" id="this_now_that">
+<!--<div class="content" id="this_now_that">
 	<div id="front_page">
 		<h3>That is now this.</h3>
 		<h5>New name. New site. New prices.</h5>
+	</div>
+</div>-->
+
+<div id="complete" class="content">
+	<div class="complete_info">
+		<h4>The <%= @complete_set.name %></h4>
+		<p><%= @complete_set.style %></p>
+		<p><%= @complete_set.extras %></p>
+		<a href="/buy/<%= @complete_set.id %>" class="blue_button">Buy - $<%= @complete_set.price %></a>
 	</div>
 </div>
 
