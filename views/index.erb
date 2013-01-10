@@ -18,5 +18,10 @@
 
 <%= erb :'products', :layout => false %>
 
+<div class="content">
+	<a href="/buy/<%= @complete_set.id %>" class="blue_button">Buy The Complete Set - $<%= @complete_set.price %></a>
+	<span class="discount">All 14 themes for a 60% discount.</span>
+</div>
+
 <%= erb :'about', :layout => false %>
 

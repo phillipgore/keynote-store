@@ -211,9 +211,8 @@ class TheKeynoteStore < Sinatra::Base
 		@heading_selector = Random.rand(8)
 		@heading_array = ["Good Choice.", "Great Pick.", "Nice Thinking.", "We Agree.", "Love it.", "Yes.", "Awesome.", "Great Idea."]
 		@heading = @heading_array[@heading_selector]
-		if @current_theme.name === "Complete Set"
-			@heading = "Take It All."
-			erb :complete
+		if @current_theme.id === 49
+			redirect "/"
 		else
 			erb :theme
 		end
