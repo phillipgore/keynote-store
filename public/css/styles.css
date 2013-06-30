@@ -353,6 +353,10 @@ video {
 	text-decoration: none;
 }
 
+/*.product:hover {
+	box-shadow: 0 0 9px #000;
+}*/
+
 .product_long {
 	width: 835px;
 	height: 224px;
