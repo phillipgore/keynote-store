@@ -709,7 +709,7 @@ select {
 .ios {
 	background-color: #3c3c04;
 	background-color: #000000;
-	opacity: 0.5;
+	opacity: 0.8;
 	position: absolute;
 	z-index: 100;
 	top: 0;
@@ -717,6 +717,13 @@ select {
 	right: 0;
 	left: 0;
 	display: none;
+}
+
+.ios_message {
+	margin-top: 144px;
+	padding-right: 36px;
+	padding-left: 36px;
+	color: #ffffff;
 }
 
 /* @end */
