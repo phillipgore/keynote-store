@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-		
+		$('.ios').show();
 	}
 
 	var video = $('video')[0];
