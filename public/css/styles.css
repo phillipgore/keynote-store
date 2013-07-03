@@ -706,6 +706,19 @@ select {
 	margin-left: 9px;
 }
 
+.ios {
+	opacity:0.5
+	background-color: #3c3c04;
+	background-color: #000000;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	display: none;
+}
+
 /* @end */
 
 /* @group Admin */
