@@ -731,6 +731,7 @@ select {
 .ios_message p {
 	font-size: 18px;
 	line-height: 38px;
+	color: #ffffff;
 }
 
 /* @end */
