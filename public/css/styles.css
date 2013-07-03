@@ -9,6 +9,7 @@ body {
 	margin: 0px;
 	color: black;
 	font: 1em Arial, Helvetica, sans-serif;
+	position: relative;
 }
 
 .background_dark_wall {
@@ -717,6 +718,7 @@ select {
 	right: 0;
 	left: 0;
 	display: none;
+	height: 100%;
 }
 
 .ios_message {
