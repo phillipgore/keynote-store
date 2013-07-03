@@ -710,7 +710,7 @@ select {
 .ios {
 	background-color: #3c3c04;
 	background-color: #000000;
-	opacity: 0.8;
+	opacity: 0.9;
 	position: absolute;
 	z-index: 100;
 	top: 0;
@@ -722,10 +722,14 @@ select {
 }
 
 .ios_message {
-	margin-top: 144px;
-	padding-right: 72px;
-	padding-left: 72px;
+	margin-top: 288px;
+	padding-right: 144px;
+	padding-left: 144px;
 	color: #ffffff;
+}
+
+.ios_message p {
+	font-size: 14px;
 }
 
 /* @end */
