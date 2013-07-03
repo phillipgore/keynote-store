@@ -707,9 +707,9 @@ select {
 }
 
 .ios {
-	opacity:0.5
 	background-color: #3c3c04;
 	background-color: #000000;
+	opacity: 0.5;
 	position: absolute;
 	z-index: 100;
 	top: 0;
