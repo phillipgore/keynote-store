@@ -1002,6 +1002,8 @@ select {
 
 /* @end */
 
+/* @group Extras */
+
 #cardboard_extras {
 	background: url('../images/extras-rotate-sprite.png') no-repeat -149px -59px white;
 }
@@ -1062,6 +1064,19 @@ select {
 	background: url('../images/discount-rotate.png') no-repeat 36px -68px white;
 }
 
+/* @end */
+
 #discount_card span {
 	margin-right: 90px;
+}
+
+.badge {
+	background: url('../images/badge.png') no-repeat;
+	width: 104px;
+	height: 104px;
+	color: #ffffff;
+	position: absolute;
+	right: 54px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
 }
