@@ -1,7 +1,7 @@
 <div class="product_container">
-	<a id="complete_set" class="product" href="/theme/49"><div class="product_name">Complete Set</div></a>
+	<a id="complete_set" class="product hide" href="/theme/49"><div class="product_name">Complete Set</div></a>
 	<% @theme.each do |theme| %>
 		<a id="<%= theme.name.downcase.gsub(" ", "_") %>" class="product<% if theme.id === 49 %> hide<% end %>" href="/theme/<%= theme.id %>"><div class="product_name"><%= theme.name %></div></a>
 	<% end %>
-		<a id="freebies" class="product" href="/free"><div class="product_name">Freebies</div></a>
+		<a id="freebies" class="product hide" href="/free"><div class="product_name">Freebies</div></a>
 </div>
