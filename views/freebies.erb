@@ -1,16 +1,25 @@
-<%= erb :'banner_standard', :layout => false %>
-<div class="product_container">
-	<% @theme.each do |theme| %>
-	<span  class="product_half <% if theme.name === "Complete Set" || theme.extras === "" %>hide<% end %>">
-		<div id="<%= theme.name.downcase.gsub(" ", "_") %>_extras" class="product_image"></div>
-		<div class="half_info">
-			<h4><%= theme.name %></h4>
-			<p><%= theme.extras %></p>
+<%= erb :'header', :layout => false %>
+
+<div class="clear freebie_list">
+<% @theme.each do |theme| %>
+	<div class="col_1of2 <% if theme.name === "Complete Set" || theme.extras === "" %>hide<% end %>">
+		<div class="module<% if theme.id === 49 %> hide<% end %>">
+			<div id="<%= theme.name.downcase.gsub(" ", "_") %>_extras" class="content clear">
+				<div class="col_2of5"><div class="module"></div></div>
+				<div class="col_3of5">
+					<h3><%= theme.name %></h3>
+					<p class="txt_left"><%= theme.extras %></p>
+				</div>
+				<div class="clear txt_right">
+					<a href="/theme/<%= theme.id %>" class="btn_grey btn_after">Theme</a> 
+					<a href="http://d3irottkalkrwf.cloudfront.net/<%= theme.name.downcase.gsub(" ", "_") %>_freebies.zip" class="btn_blue btn_after">Download</a>
+				</div>
+			</div>
 		</div>
-		<span class="catalogue_button_container">
-			<a href="/theme/<%= theme.id %>" class="gray_button">Theme</a>
-			<a href="http://d3irottkalkrwf.cloudfront.net/<%= theme.name.downcase.gsub(" ", "_") %>_freebies.zip" class="blue_button">Download</a>
-		</span>
-	</span>
-	<% end %>
+	</div>
+<% end %>
 </div>
+
+<%= erb :'buy', :layout => false %>
+<%= erb :'products', :layout => false %>
+<%= erb :'about', :layout => false %>

@@ -25,6 +25,7 @@ class Theme
 	property :price,			Integer
 	property :style,			Text
 	property :extras,			Text
+	property :list_order,		Integer
 	property :keynote_version,	String
 	property :fonts,			String
 	property :download_size,	String

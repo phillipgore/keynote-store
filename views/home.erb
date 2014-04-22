@@ -1,0 +1,26 @@
+<%= erb :'header', :layout => false %>
+
+<div class="module">
+	<div id="complete" class="content clear">
+		<div class="col_1of2"><div class="module"></div></div>
+		<div class="col_1of2">
+			<h3>The <%= @complete_set.name %> - 60% Off</h3>
+			<p><%= @complete_set.style %></p>
+			<p><%= @complete_set.extras %></p>
+			<a href="/buy/<%= @complete_set.id %>" class="btn_blue btn_after float_right">Buy - $<%= @complete_set.price %></a>
+		</div>
+	</div>
+</div>
+
+<%= erb :'buy', :layout => false %>
+
+<%= erb :'products', :layout => false %>
+
+<div class="module">
+	<div class="content clear complete">
+		<div class="complete_txt">All 10 themes for a 60% discount.</div>
+		<a href="/buy/<%= @complete_set.id %>" class="btn_blue btn_after btn_complete">Buy The Complete Set - $<%= @complete_set.price %></a>
+	</div>
+</div>
+
+<%= erb :'about', :layout => false %>

@@ -1,7 +1,34 @@
-<div class="product_container">
-	<a id="complete_set" class="product" href="/theme/49"><div class="product_name">Complete Set</div></a>
-	<% @theme.each do |theme| %>
-		<a id="<%= theme.name.downcase.gsub(" ", "_") %>" class="product<% if theme.id === 49 %> hide<% end %>" href="/theme/<%= theme.id %>"><div class="product_name"><%= theme.name %></div></a>
-	<% end %>
-		<a id="freebies" class="product" href="/free"><div class="product_name">Freebies</div></a>
+<div class="clear product_list">
+<% @theme.each do |theme| %>
+	<div class="col_1of3">
+		<div class="module<% if theme.id === 49 %> hide<% end %>">
+			<a id="<%= theme.name.downcase.gsub(" ", "_") %>" class="content" href="<% if theme.name.downcase.gsub(" ", "_") === "complete_5" %>/key/five/<%= theme.id %><% else %>/theme/<%= theme.id %><% end %>">
+				<div class="product_title">
+					<h3><%= theme.name %></h3>
+					<h4>Click or tap to view.</h4>
+				</div>
+			</a>
+		</div>
+	</div>
+<% end %>
+	<!--<div class="col_1of3">
+		<div class="module">
+			<a id="keynote_5" class="content" href="/keynote/five">
+				<div class="product_title">
+					<h3>Keynote 5</h3>
+					<h4>Click or tap to view.</h4>
+				</div>
+			</a>
+		</div>
+	</div>-->
+	<div class="col_1of3">
+		<div class="module">
+			<a id="freebies" class="content" href="/free">
+				<div class="product_title">
+					<h3>Freebies</h3>
+					<h4>Click or tap to view.</h4>
+				</div>
+			</a>
+		</div>
+	</div>
 </div>

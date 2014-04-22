@@ -1,26 +1,32 @@
-<%= erb :'banner_standard', :layout => false %>
+<%= erb :'header', :layout => false %>
 
-<div class="content" id="complete">
-	<div class="support">
-		<h4>Keynote 6.0</h4>
-		<p>Our current themes have been updated for Keynote 6.0. We do not support and have no plans to update any of our old themes. If one of our old themes is mission critical be sure to keep Keynote ’09 on your system so you can use it until you are able to recreate the presentation in Keynote 6.0.</p>
-		<h4>Keynote for iOS</h4>
-		<p>All of our current themes will work on your iPad or iPhone. Simply create a presentation on your Mac. Then save it to iCloud. The presentation along with the theme will be available in Keynote on your iOS devices.</p>
-		<h4>Secure Checkout</h4>
-		<p>Our entire site is secured using encryption with a digital certificate to keep your information private as it's sent to or from keynotestore.com including every step of the payment process.</p>
-		
-		<h4>Theme Downloads</h4>
-		<p>Once you make payment you will be directed to a page where you can download your purchase and print a receipt. You will also be sent an email with a link to the download page. You have 24 hours from the point of payment in which to download your purchase.</p>
-		
-		<h4>Sample Presentations</h4>
-		<p>The presentations shown on the individual theme pages are only samples of what can be achieved using Keynote and our custom themes. They are not included with any purchase. We are unable to provide them to any customers because many of the images are not licensed for resale.</p>
+<div class="module">
+	<div id="complete" class="content clear support">
+		<div class="col_1of2"><div class="module"></div></div>
+		<div class="col_1of2">
+			<div class="module">
+				<h3>Keynote 6</h3>
+				<p>Our current themes have been updated for Keynote 6.0. We do not support and have no plans to update any of our old themes. If one of our old themes is mission critical be sure to keep Keynote ’09 on your system so you can use it until you are able to recreate the presentation in Keynote 6.0.</p>
+				<h3>Keynote for iOS</h3>
+				<p>All of our current themes will work on your iPad or iPhone. Simply create a presentation on your Mac. Then save it to iCloud. The presentation along with the theme will be available in Keynote on your iOS devices.</p>
+				<h3>Keynote 5</h3>
+				<p>We are excited about Keynote 6. It is an awesome foundation for the future of Keynote on the Mac, iPad and iPhone. If there are no missing features that are mission critical we highly recommend you upgrade to 6 and purchase the upgraded version of our themes.</p>
+				<p>However, we recognize that many of you cannot upgrade yet for a variety of reasons. That is why we are offering all of our themes in a version that is compatible with Keynote 5. Every theme we offer. In the version you need. One simple purchase. One great price. One quick download. One easy install.</p>
+				<h3>Secure Checkout</h3>
+				<p>Our entire site is secured using encryption with a digital certificate to keep your information private as it's sent to or from keynotestore.com including every step of the payment process.</p>
+				<h3>Theme Downloads</h3>
+				<p>Once you make payment you will be directed to a page where you can download your purchase and print a receipt. You will also be sent an email with a link to the download page. You have 24 hours from the point of payment in which to download your purchase.</p>
+				
+				<h3>Sample Presentations</h3>
+				<p>The presentations shown on the individual theme pages are only samples of what can be achieved using Keynote and our custom themes. They are not included with any purchase. We are unable to provide them to any customers because many of the images are not licensed for resale.</p>
+			</div>
+			<div class="module">
+				<a class="btn_blue float_right" href="mailto:sales@keynotestore.com?subject=Keynote Store Help">Support Email</a>
+			</div>
+		</div>
 	</div>
 </div>
 
-<div class="product_container">
-	<a id="help" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Help"><div class="product_name">Help Email</div></a>
-	<a id="feedback" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Feedback"><div class="product_name">Feedback Email</div></a>
-	<a id="complete_set" class="product" href="/theme/49"><div class="product_name"><%= @complete_set.name %></div></a>
-</div>
-
+<%= erb :'buy', :layout => false %>
+<%= erb :'products', :layout => false %>
 <%= erb :'about', :layout => false %>

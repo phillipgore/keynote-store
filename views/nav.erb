@@ -1,6 +1,30 @@
-<a href="/">home</a> | 
-<a href="/free">freebies</a> | 
-<!--<a href="/tutorials">tutorials</a> |--> 
-<a href="/catalogue">catalogue</a> | 
-<a href="/checkout">cart</a> | 
-<a href="/support">support</a>
+<div class="clear">
+	<div class="col_1of2 mobile_hide">
+		<div class="module mini_cart">
+			<a href="/checkout">
+			<% if session['purchase'] %>
+				<% if @purchase_count == 0 %>
+					cart items: 0, total: $0
+				<% elsif @purchase_count > 2 %>
+					cart items: <%= @purchase_count %>, total: $<%= @purchase_discount.to_i %> - 10% discount
+				<% else %>
+					cart items: <%= @purchase_count %>, total: $<%= @purchase_total %>
+				<% end %>
+			<% else %>
+				cart items: 0, total: $0
+			<% end %>
+			</a>
+		</div>
+	</div>
+	<div class="col_1of2">
+		<div class="module mini_nav">
+			<nav>
+				<a href="/">home</a> | 
+				<a href="/free">freebies</a> | 
+				<!--<a href="/catalogue">catalogue</a> |--> 
+				<a href="/checkout">cart</a> | 
+				<a href="/support">support</a>
+			</nav>
+		</div>
+	</div>
+</div>

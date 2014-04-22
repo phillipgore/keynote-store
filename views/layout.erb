@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="At The Keynote Store we work to produce creative themes for Apple's Keynote presentation software. Themes that are elegant and understated, simple but not simplistic. Media placeholders, charts, tables and shape styles are custom designed with the look and feel of each theme in mind. Additional versatility is provided through slides of unique extras which are included with each of our Keynote themes. All of our themes feature at least thirty photo slides providing the user with multiple layouts through which he can effectively compliment his presentation.">
+	<link rel="stylesheet" href="/css/normalize.css" type='text/css'>
+	<link rel="stylesheet" href="/css/main.css" type='text/css'>
 	<link href="/css/styles.css" rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
@@ -22,37 +24,29 @@
 	
 	</script>
 </head>
-<body class="background_dark_wall">
-	<%= erb :'ios', :layout => false %>
-	<div id="wrapper">
-		<header>
-			<div class="header_box grey_metal"></div>
-			<div class="header_box grey_metal"></div>
-			<div class="header_box grey_metal"></div>
-			<div class="header_box grey_metal"></div>
-		</header>
-		<div id="left_border"></div>
-		<div id="container">
-			<div>
-				<nav>
-					<%= erb :'mini_cart', :layout => false %>
-					<%= erb :'nav', :layout => false %>
-				</nav>
-				<%= yield %>
-				<nav>
-					<%= erb :'nav', :layout => false %>
-				</nav>
-			</div>
+<body>
+	
+	<div class="outer_wrapper">
+		<div class="clear">
+			<div class="grey_metal head_box border_left border_bottom"></div>
+			<div class="grey_metal head_box border_left border_bottom"></div>
+			<div class="grey_metal head_box border_left border_bottom border_right"></div>
 		</div>
-		<div id="right_border"></div>
-		<footer>
-			<div class="footer_box grey_metal"></div>
-			<div class="footer_box grey_metal"></div>
-			<div class="footer_box grey_metal"></div>
-			<div class="footer_box grey_metal"></div>
-		</footer>
+		<div class="grey_metal left_box border_left border_right"></div>
+		<div class="inner_wrapper">
+			<%= erb :'nav', :layout => false %>
+			<%= yield %>
+			<%= erb :'footer', :layout => false %>
+		</div>
+		<div class="grey_metal right_box border_left border_right"></div>
+		<div class="clear">
+			<div class="grey_metal foot_box border_left border_top"></div>
+			<div class="grey_metal foot_box border_left border_top"></div>
+			<div class="grey_metal foot_box border_left border_top border_right"></div>
+		</div>
 	</div>
-
+	
+	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="/jquery/scripts.js" charset="utf-8"></script>
 	<script type="text/javascript" src="https://js.stripe.com/v1/"></script>

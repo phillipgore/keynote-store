@@ -1,0 +1,44 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<!--<div id="complete" class="content">
+	<div class="complete_info">
+		<h4>The <%= @complete_set.name %> - 60% Off</h4>
+		<p><%= @complete_set.style %></p>
+		<p><%= @complete_set.extras %></p>
+		<a href="/buy/<%= @complete_set.id %>" class="blue_button">Buy - $<%= @complete_set.price %></a>
+	</div>
+</div>-->
+
+<div id="discount_card" class="content text_align_right">
+	<span>Buy any three themes and receive a 10% discount.</span>
+</div>
+
+<div class="product_container">
+
+	<% @theme.each do |theme| %>
+	<span id="<%= theme.name.downcase.gsub(" ", "_") %>" class="product_long <% if theme.id === 49 %> hide<% end %>">
+		<div class="long_info">
+			<h4><%= theme.name %></h4>
+			<p><%= theme.style %><% if theme.name === "Complete Set" %> <%= theme.extras %><% end %></p>
+		</div>
+		<span class="catalogue_button_container">
+			<a href="/theme/<%= theme.id %>" class="gray_button">More Info</a>
+			<a href="/buy/<%= theme.id %>" class="blue_button">Buy - $<%= theme.price %></a>
+		</span>
+	</span>
+	<% end %>
+	
+	<span id="<%= @complete_set.name.downcase.gsub(" ", "_") %>" class="product_long">
+		<div class="long_info">
+			<h4><%= @complete_set.name %></h4>
+			<p><%= @complete_set.style %><%= @complete_set.extras %></p>
+		</div>
+		<span class="catalogue_button_container">
+			<a href="/theme/<%= @complete_set.id %>" class="gray_button">More Info</a>
+			<a href="/buy/<%= @complete_set.id %>" class="blue_button">Buy - $<%= @complete_set.price %></a>
+		</span>
+	</span>
+	
+</div>
+
+<%= erb :'about', :layout => false %>

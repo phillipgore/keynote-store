@@ -1,0 +1,19 @@
+<%= erb :'header', :layout => false %>
+
+<div class="module">
+	<div id="old_school" class="content clear">
+		<div class="col_1of2 icon_5">
+			<img src="/images/keynote-five.png">
+		</div>
+		<div class="col_1of2">
+			<div class="module_right">
+				<h3><%= @current_theme.name %></h3>
+				<p><%= @current_theme.style %></p>
+				<p><%= @current_theme.extras %></p>
+				<a href="/buy/<%= @current_theme.id %>" class="btn_blue btn_after float_right">Buy - $<%= @current_theme.price %></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= erb :'about', :layout => false %>

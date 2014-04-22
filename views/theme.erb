@@ -1,74 +1,88 @@
-<%= erb :'banner_standard', :layout => false %>
+<%= erb :'header', :layout => false %>
 
-<div class="content">
-	<div class="theme_video">
-		<h3><%= @current_theme.name %></h3>
-		<a href="/buy/<%= @current_theme.id %>" class="blue_button">Buy - $<%= @current_theme.price %></a>
-		<img class="video_poster" width="760" height="428" src="/images/poster-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= @current_theme.name %> a Custom Theme for Apple's Keynote Presentation Software"/>
-<!-- Settings for exporting videos with Handbrake: Web Optimized, Constant Frame Rate, Constant Quality, RF 15, 760x428 -->
-		<video class="video" width="760" height="428" preload="auto" >
-		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.ogv" type='video/ogg; codecs="theora, vorbis"' />
-		  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.mp4" /> 
-		  Your browser does not support the video tag.
-		</video>
-		<div class="video_controls">
-			<a href="#"></a>
-			<div class="video_track">
-				<div class="video_scrubber"></div>
+<div class="module">
+	<div class="content clear">
+		<div class="row">
+			<div class="col_2of3 theme_center">
+				<h5><%= @current_theme.name %></h5>
+			</div>
+			<div class="col_1of3 theme_center">
+				<a href="/buy/<%= @current_theme.id %>" class="btn_blue float_center_right">Buy - $<%= @current_theme.price %></a>
 			</div>
 		</div>
-		<div class="ready"></div>
-	</div>
-	
-	<div id="theme_info">
-		<div class="theme_stats">
-			<h4>Statistics</h4>
-			<ul>
-			<% unless @current_theme.keynote_version == "" %>
-				<li>Keynote Version: <%= @current_theme.keynote_version %></li>
-			<% end %>
-			<% unless @current_theme.fonts == "" %>	
-				<li>Fonts: <%= @current_theme.fonts %></li>
-			<% end %>
-			<% unless @current_theme.download_size == "" %>
-				<li>Download Size: <%= @current_theme.download_size %></li>
-			<% end %>
-			<% unless @current_theme.theme_sizes == "" %>
-				<li>Theme Sizes: <%= @current_theme.theme_sizes %></li>
-			<% end %>
-			<% unless @current_theme.text_layouts == "" %>
-				<li>Text Layouts: <%= @current_theme.text_layouts %> Slides</li>
-			<% end %>
-			<% unless @current_theme.photo_layouts == "" %>
-				<li>Photo Layouts: <%= @current_theme.photo_layouts %> Slides</li>
-			<% end %>
-			<% unless @current_theme.total_layouts == "" %>
-				<li>Total Layouts: <%= @current_theme.total_layouts %> Slides</li>
-			<% end %>
-			<% unless @current_theme.extras_slides == "" %>
-				<li>Extras: <%= @current_theme.extras_slides %> Slides</li>
-			<% end %>
-			<% unless @current_theme.video_tutorial == "" %>
-				<li>Video Tutorial: <%= @current_theme.video_tutorial %></li>
-			<% end %>
-			</ul>
+		<div class="row">
+			<div class="video_container">
+				<img class="video_poster" src="/images/poster-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= @current_theme.name %> a Custom Theme for Apple's Keynote Presentation Software"/>
+				<video class="video" preload="auto" >
+				  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.ogv" type='video/ogg; codecs="theora, vorbis"' />
+				  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.mp4" /> 
+				  Your browser does not support the video tag.
+				</video>
+			</div>
+			<div class="video_controls">
+				<a href="#"></a>
+				<div class="video_track">
+					<div class="video_scrubber"></div>
+				</div>
+			</div>
 		</div>
-		<div class="theme_description">
-			<h4>Description</h4>
-			<p><%= @current_theme.style %></p>
-		</div>		
-	</div>
-	
-	
-	<div class="theme_layouts"> 
-		<h4>Slide Layouts</h4>
-		<img src="../images/slides-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" alt="Slide Layouts for <%= @current_theme.name %> a Custom Theme for Apple's Keynote Presentation Software"/>
-	</div>
-	<div class="theme_button_container">
-		<a href="/buy/<%= @current_theme.id %>" class="blue_button">Buy <%= @current_theme.name %> - $<%= @current_theme.price %></a>
-		<span class="discount">Buy any three themes and receive a 10% discount.</span>
+		<div class="row border_top border_bottom">
+			<div class="col_2of5">
+				<div class="module_left">
+					<h3>Statistics</h3>
+					<p>
+						<ul>
+						<% unless @current_theme.keynote_version == "" %>
+							<li>Keynote Version: <%= @current_theme.keynote_version %></li>
+						<% end %>
+						<% unless @current_theme.fonts == "" %>	
+							<li>Fonts: <%= @current_theme.fonts %></li>
+						<% end %>
+						<% unless @current_theme.download_size == "" %>
+							<li>Download Size: <%= @current_theme.download_size %></li>
+						<% end %>
+						<% unless @current_theme.theme_sizes == "" %>
+							<li>Theme Sizes: <%= @current_theme.theme_sizes %></li>
+						<% end %>
+						<% unless @current_theme.text_layouts == "" %>
+							<li>Text Layouts: <%= @current_theme.text_layouts %> Slides</li>
+						<% end %>
+						<% unless @current_theme.photo_layouts == "" %>
+							<li>Photo Layouts: <%= @current_theme.photo_layouts %> Slides</li>
+						<% end %>
+						<% unless @current_theme.total_layouts == "" %>
+							<li>Total Layouts: <%= @current_theme.total_layouts %> Slides</li>
+						<% end %>
+						<% unless @current_theme.extras_slides == "" %>
+							<li>Extras: <%= @current_theme.extras_slides %> Slides</li>
+						<% end %>
+						<% unless @current_theme.video_tutorial == "" %>
+							<li>Video Tutorial: <%= @current_theme.video_tutorial %></li>
+						<% end %>
+						</ul>
+					</p>
+				</div>
+			</div>
+			<div class="col_3of5">
+				<div class="module_right">
+					<h3>Description</h3>
+					<p><%= @current_theme.style %></p>
+				</div>
+			</div>
+		</div>
+		<div class="row border_bottom">
+			<h3>Slide Layouts</h3>
+			<p><img class="slides" src="../images/slides-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" alt="Slide Layouts for <%= @current_theme.name %> a Custom Theme for Apple's Keynote Presentation Software"/></p>
+		</div>
+		<div class="clear">
+			<div class="col_1of2 buy_center">
+				<a href="/buy/<%= @current_theme.id %>" class="btn_blue">Buy <%= @current_theme.name %> - $<%= @current_theme.price %></a>
+			</div>
+			<div class="col_1of2 buy_center">Buy any three themes and receive a 10% discount.</div>
+		</div>
 	</div>
 </div>
 
-<%= erb :'promo', :layout => false %>
+<%= erb :'products', :layout => false %>
 
+<%= erb :'about', :layout => false %>

@@ -1,10 +1,21 @@
-<%= erb :'banner_standard', :layout => false %>
+<%= erb :'header', :layout => false %>
 
-<div class="product_container">
+<div class="product_list clear">
 	<% @theme.each do |theme| %>
-		<div id="<%= theme.name.downcase.gsub(" ", "_") %>" class="product">
-			<div class="edit_theme"><a class="delete" href="/admin/delete/<%= theme.id %>">delete</a> <a class="edit" href="/admin/edit/<%= theme.id %>">edit</a></div>
-			<div class="product_name"><%= theme.name %></div>
+		<div class="col_1of3">
+			<div class="module">
+				<div id="<%= theme.name.downcase.gsub(" ", "_") %>" class="content" href="/theme/<%= theme.id %>">
+					
+					<div class="product_title">
+						<h3><%= theme.name %></h3>
+					</div>
+					<div class="clear">
+						<h4><a class="edit float_right" href="/admin/edit/<%= theme.id %>">edit <%= theme.list_order %></a></h4>
+						<h4><a class="delete float_right" href="/admin/delete/<%= theme.id %>">delete</a></h4>
+					</div>
+					
+				</div>
+			</div>
 		</div>
 	<% end %>
 </div>

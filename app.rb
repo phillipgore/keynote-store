@@ -30,7 +30,7 @@ class TheKeynoteStore < Sinatra::Base
 	end
 	
 	before do
-		@theme = Theme.all(:order => [ :id.desc ])
+		@theme = Theme.all(:order => [ :list_order.asc ])
 		@complete_set = Theme.first(:name => "Complete Set")
 		if session['purchase']
 			@discount_percentage = 0.1
@@ -73,12 +73,18 @@ class TheKeynoteStore < Sinatra::Base
 # Theme Site
 	get '/' do
 		@heading = "Welcome."
-		erb :index
+		erb :home
 	end
 	
 	get '/catalogue' do
 		@heading = "Our Themes."
 		erb :catalogue
+	end
+	
+	get '/key/five/:id' do
+		@current_theme = Theme.get(params[:id])
+		@heading = "Our Themes."
+		erb :five
 	end
 	
 	get '/checkout' do
@@ -133,7 +139,7 @@ class TheKeynoteStore < Sinatra::Base
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
 				      	</tr>  
 				      	<tr>  
-				      		<td><a href='http://www.keynotestore.com/order/#{@order.order_number}/#{@order.id}'><img src='https://s3.amazonaws.com/keynote_store/button-email-order.png' alt='Your Order.'></a></td>  
+				      		<td><a href='http://www.keynotestore.com/order/#{@order.order_number}/#{@order.id}'><img width='143' height='30' src='https://s3.amazonaws.com/keynote_store/button-email-order.png' alt='Your Order.'></a></td>  
 				      	</tr>
 				      	<tr>
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>

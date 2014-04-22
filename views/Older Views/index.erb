@@ -1,0 +1,31 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<!--<div class="content" id="this_now_that">
+	<div id="front_page">
+		<h3>That is now this.</h3>
+		<h5>New name. New site. New prices.</h5>
+	</div>
+</div>-->
+
+<div id="complete" class="content">
+	<div class="complete_info">
+		<h4>The <%= @complete_set.name %> - 60% Off</h4>
+		<p><%= @complete_set.style %></p>
+		<p><%= @complete_set.extras %></p>
+		<a href="/buy/<%= @complete_set.id %>" class="blue_button">Buy - $<%= @complete_set.price %></a>
+	</div>
+</div>
+
+<div id="discount_card" class="content text_align_right">
+	<span>Buy any three themes and receive a 10% discount.</span>
+</div>
+
+<%= erb :'products', :layout => false %>
+
+<div class="content">
+	<a href="/buy/<%= @complete_set.id %>" class="blue_button">Buy The Complete Set - $<%= @complete_set.price %></a>
+	<span class="discount">All 10 themes for a 60% discount.</span>
+</div>
+
+<%= erb :'about', :layout => false %>
+

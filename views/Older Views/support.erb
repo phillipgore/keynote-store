@@ -1,0 +1,26 @@
+<%= erb :'banner_standard', :layout => false %>
+
+<div class="content" id="complete">
+	<div class="support">
+		<h4>Keynote 6.0</h4>
+		<p>Our current themes have been updated for Keynote 6.0. We do not support and have no plans to update any of our old themes. If one of our old themes is mission critical be sure to keep Keynote ’09 on your system so you can use it until you are able to recreate the presentation in Keynote 6.0.</p>
+		<h4>Keynote for iOS</h4>
+		<p>All of our current themes will work on your iPad or iPhone. Simply create a presentation on your Mac. Then save it to iCloud. The presentation along with the theme will be available in Keynote on your iOS devices.</p>
+		<h4>Secure Checkout</h4>
+		<p>Our entire site is secured using encryption with a digital certificate to keep your information private as it's sent to or from keynotestore.com including every step of the payment process.</p>
+		
+		<h4>Theme Downloads</h4>
+		<p>Once you make payment you will be directed to a page where you can download your purchase and print a receipt. You will also be sent an email with a link to the download page. You have 24 hours from the point of payment in which to download your purchase.</p>
+		
+		<h4>Sample Presentations</h4>
+		<p>The presentations shown on the individual theme pages are only samples of what can be achieved using Keynote and our custom themes. They are not included with any purchase. We are unable to provide them to any customers because many of the images are not licensed for resale.</p>
+	</div>
+</div>
+
+<div class="product_container">
+	<a id="help" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Help"><div class="product_name">Help Email</div></a>
+	<a id="feedback" class="product" href="mailto:sales@keynotestore.com?subject=Keynote Store Feedback"><div class="product_name">Feedback Email</div></a>
+	<a id="complete_set" class="product" href="/theme/49"><div class="product_name"><%= @complete_set.name %></div></a>
+</div>
+
+<%= erb :'about', :layout => false %>

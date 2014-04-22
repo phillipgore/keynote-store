@@ -1,17 +1,15 @@
-<%= erb :'banner_standard', :layout => false %>
-
-<div class="content">
-	<div><%= flash[:notice] %></div>
-	<form class="login_form" action="/login" method="post" id="child" enctype="multipart/form-data">
-		<label>Email</label>
-		<input type="email" autocomplete='off' name="user_email" id="user_email" autocorrect="off" autocapitalize="off"/>
-		
-		<label>Password</label>
-		<input type="password" autocomplete='off' name="password" id="password" autocorrect="off" autocapitalize="off"/>
-				
-		<div id="buttons">
-			<button type="submit">Login to Admin</button>
-		</div>
-	</form>
-
+<%= erb :'header', :layout => false %>
+<div class="module">
+	<div class="content clear">
+		<div><%= flash[:notice] %></div>
+		<form class="login_form" action="/login" method="post" id="child" enctype="multipart/form-data">
+			<label>Email</label>
+			<input type="email" autocomplete='off' name="user_email" id="user_email" autocorrect="off" autocapitalize="off"/>
+			<label>Password</label>
+			<input type="password" autocomplete='off' name="password" id="password" autocorrect="off" autocapitalize="off"/>
+			<div class="clear">		
+				<button class="btn_blue float_right" type="submit">Login to Admin</button>
+			</div>
+		</form>
+	</div>
 </div>
