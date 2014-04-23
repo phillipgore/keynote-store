@@ -1,6 +1,48 @@
 <%= erb :'header', :layout => false %>
 
 <div class="module">
+	<div class="content">
+		<h3>Online Sales Receipt</h3>
+		<h6>Customer: <%= @order.order_first_name %> <%= @order.order_last_name  %></h6>
+		<h6>Date: <%= @order.created_at.strftime("%B %d, %Y") %></h6>
+		<h6>Invoice: 000-<%= @order.id %></h6>
+		&nbsp<br>
+		<p>The themes you purchased are listed below along with a download link. You will only be able to download your order for 24 hours from the time of purchase. We truly appreciate your business. If you need any assistance now or in the future please contact us at support@keynotestore.com.</p>
+		<% @purchase.each do |purchase| %>
+			<div class="mobile_cart_item">
+				<div class="mobile_cart_img">
+					<img src="/images/poster-<%= purchase.item_name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= purchase.item_name %> a Custom Theme for Apple's Keynote Presentation Software"/>
+				</div>
+				<div class="mobile_cart_info">
+					Theme:
+					<% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
+						<a class="download" href="<%= purchase.item_url %>">Download <%= purchase.item_name %></a>
+					<% else %>
+						<%= purchase.item_name %> Download Expired
+					<% end %>
+					<% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
+						<%= (24 - (DateTime.now - @order.created_at) * 24).to_i %> hours
+					<% else %>
+						Expired
+					<% end %>
+				</div>
+				<div class="mobile_cart_info">Quantity: <%= purchase.item_quantity %></div>
+				<div class="mobile_cart_info">Item Price: $<%= purchase.item_price %></div>
+				<div class="mobile_cart_info">Purchase Price: $<%= purchase.item_quantity * purchase.item_price %></div>
+			</div>
+		<% end %>
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<!--<div class="module">
 	<div class="content clear">
 		<h3>Online Sales Receipt</h3>
 		<h6>Customer: <%= @order.order_first_name %> <%= @order.order_last_name  %></h6>
@@ -67,7 +109,7 @@
 		</div>
 		
 	</div>
-</div>
+</div>-->
 
 <%= erb :'products', :layout => false %>
 
