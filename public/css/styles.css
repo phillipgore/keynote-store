@@ -200,10 +200,6 @@ input.quantity {
 	height: 72px;
 }
 
-.receipt_img img {
-	height: 112px;
-}
-
 .mobile_card_input input:not([type=checkbox]) {
 	width: 256px;
 }
@@ -504,6 +500,10 @@ input.quantity {
 		float: left;
 		margin-right: 18px;
 		margin-bottom: 0;
+	}
+	
+	.receipt_img img{
+		height: 112px;
 	}
 	
 	.mobile_cart_info {
