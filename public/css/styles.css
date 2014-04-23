@@ -167,7 +167,7 @@ input.quantity {
 	border-top: 1px solid #999;
 }
 
-.mobile_cart_item div {
+.mobile_cart_item, .mobile_cart_line {
 	padding-bottom: 6px;
 }
 
@@ -201,7 +201,7 @@ input.quantity {
 }
 
 .receipt_img img {
-	height: 82px;
+	height: 112px;
 }
 
 .mobile_card_input input:not([type=checkbox]) {
@@ -503,7 +503,7 @@ input.quantity {
 		display: inline-block;
 		float: left;
 		margin-right: 18px;
-		margin-bottom: 0;
+		margin-bottom: 12px;
 	}
 	
 	.mobile_cart_info {

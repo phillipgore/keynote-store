@@ -5,19 +5,19 @@
 		<% if session['purchase'] %>
 			<h3>Review your order.</h3>
 			<% @purchase_hash.sort_by { |key, value| key }.each do |key, value| %>
-				<div class="mobile_cart_item">
+				<div class="mobile_cart_item clear">
 					<div class="mobile_cart_img">
 						<img src="/images/poster-<%= Theme.get(key.to_i).name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= Theme.get(key.to_i).name %> a Custom Theme for Apple's Keynote Presentation Software"/>
 					</div>
 					<div class="mobile_cart_info">
-						<div><strong><%= Theme.get(key.to_i).name %>: $<%= Theme.get(key.to_i).price %></strong></div>
-						<div>Quantity: 
+						<div class="mobile_cart_line"><strong><%= Theme.get(key.to_i).name %>: $<%= Theme.get(key.to_i).price %></strong></div>
+						<div class="mobile_cart_line">Quantity: 
 						<form action="/update/<%= key.to_i %>" method="POST">
 							<input class="quantity" type="text" name="new_count" autocomplete="off" value="<%= value.to_i %>"/>
 							<button class="btn_blue cart_update" type="submit">Update</button>
 						</form>
 						<a class="btn_red cart_remove" href="/remove/<%= Theme.get(key.to_i).id %>">X</a></div>
-						<div>Total: $<%= Theme.get(key.to_i).price * value.to_i %></div>
+						<div class="mobile_cart_line">Total: $<%= Theme.get(key.to_i).price * value.to_i %></div>
 					</div>
 				</div>
 			<% end %>

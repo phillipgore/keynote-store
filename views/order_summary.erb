@@ -9,23 +9,22 @@
 		&nbsp<br>
 		<p>The themes you purchased are listed below along with a download link. You will only be able to download your order for 24 hours from the time of purchase. We truly appreciate your business. If you need any assistance now or in the future please contact us at support@keynotestore.com.</p>
 		<% @purchase.each do |purchase| %>
-			<div class="mobile_cart_item">
+			<div class="mobile_cart_item clear">
 				<div class="receipt_img">
 					<img src="/images/poster-<%= purchase.item_name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= purchase.item_name %> a Custom Theme for Apple's Keynote Presentation Software"/>
 				</div>
 				<div class="mobile_cart_info">
-						<div><% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
-							<a class="btn_blue" href="<%= purchase.item_url %>">Download <%= purchase.item_name %></a> <strong>$<%= purchase.item_price %></strong>
-						<% else %>
-							<strong><%= purchase.item_name %>: $<%= purchase.item_price %></strong>
-						<% end %></div>
-						<div>Download Time: <% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
+						<div class="mobile_cart_line"><strong><%= purchase.item_name %>: $<%= purchase.item_price %></strong></div>
+						<% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
+							<div class="mobile_cart_line"><a class="btn_blue" href="<%= purchase.item_url %>">Download <%= purchase.item_name %></a></div>
+						<% end %>
+						<div class="mobile_cart_line">Download Time: <% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
 							<%= (24 - (DateTime.now - @order.created_at) * 24).to_i %> hours
 						<% else %>
 							Expired
 						<% end %></div>
-					<div>Quantity: <%= purchase.item_quantity %></div>
-					<div>Purchase Price: $<%= purchase.item_quantity * purchase.item_price %></div>
+					<div class="mobile_cart_line">Quantity: <%= purchase.item_quantity %></div>
+					<div class="mobile_cart_line">Purchase Price: $<%= purchase.item_quantity * purchase.item_price %></div>
 				</div>
 			</div>
 		<% end %>
