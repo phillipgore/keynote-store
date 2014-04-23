@@ -190,14 +190,18 @@ input.quantity {
 	width: 266px;
 }
 
-.mobile_cart_img {
+.mobile_cart_img, .receipt_img {
 	display: block;
 }
 
-.mobile_cart_img img {
+.mobile_cart_img img, .receipt_img img {
 	width: auto;
 	height: 66px;
 	margin-bottom: 9px;
+}
+
+.receipt_img img {
+	height: 82px;
 }
 
 .mobile_card_input input:not([type=checkbox]) {
@@ -239,7 +243,7 @@ input.quantity {
 	text-align: center;
 }
 
-.cart_update {
+.cart_update, .download {
 	margin-right: 6px;
 }
 
@@ -495,7 +499,7 @@ input.quantity {
 		height: 50px;
 	}
 	
-	.mobile_cart_img {
+	.mobile_cart_img, .receipt_img {
 		display: inline-block;
 		float: left;
 		margin-right: 18px;
@@ -1193,22 +1197,6 @@ tr:hover {
 
 .update:hover {
 	color: #0fbf17;
-}
-
-.download {
-	color: white;
-	border-radius: 4px;
-	text-decoration: none;
-	text-align: center;
-	margin-top: 0;
-	background: url('../images/button-gradiant-small.png') repeat-x 0 center;
-	border: 1px solid #0003ab;
-	text-shadow: 0 0 1px #0003ab;
-	font-size: 1em;
-	width: 216px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	display: inline-block;
 }
 
 .remove:hover {
