@@ -16,13 +16,15 @@
 				<div class="mobile_cart_info">
 						<div class="mobile_cart_line"><strong><%= purchase.item_name %>: $<%= purchase.item_price %></strong></div>
 						<% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
-							<div class="mobile_cart_line"><a class="btn_blue" href="<%= purchase.item_url %>">Download <%= purchase.item_name %></a></div>
+							<div class="mobile_cart_line">
+								<a class="btn_blue" href="<%= purchase.item_url %>">Download <%= purchase.item_name %></a> 
+								<% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
+									<%= (24 - (DateTime.now - @order.created_at) * 24).to_i %> Hours Remain
+								<% else %>
+									Download Time: Expired
+								<% end %>
+							</div>
 						<% end %>
-						<div class="mobile_cart_line">Download Time: <% if ((DateTime.now - @order.created_at) * 24).to_f < 24 %>
-							<%= (24 - (DateTime.now - @order.created_at) * 24).to_i %> hours
-						<% else %>
-							Expired
-						<% end %></div>
 					<div class="mobile_cart_line">Quantity: <%= purchase.item_quantity %></div>
 					<div class="mobile_cart_line">Purchase Price: $<%= purchase.item_quantity * purchase.item_price %></div>
 				</div>
