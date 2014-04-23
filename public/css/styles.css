@@ -167,11 +167,11 @@ input.quantity {
 	border-top: 1px solid #999;
 }
 
-.mobile_cart_item, .mobile_cart_line {
+.mobile_cart_line {
 	padding-bottom: 6px;
 }
 
-.mobile_cart_item div:last-child {
+.mobile_cart_item .mobile_cart_line:last-child {
 	padding-bottom: 0;
 }
 
@@ -503,7 +503,7 @@ input.quantity {
 		display: inline-block;
 		float: left;
 		margin-right: 18px;
-		margin-bottom: 12px;
+		margin-bottom: 0;
 	}
 	
 	.mobile_cart_info {

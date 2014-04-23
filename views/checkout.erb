@@ -1,11 +1,11 @@
 <%= erb :'header', :layout => false %>
 
 <div class="module">
-	<div class="content">
+	<div class="content clear">
 		<% if session['purchase'] %>
 			<h3>Review your order.</h3>
 			<% @purchase_hash.sort_by { |key, value| key }.each do |key, value| %>
-				<div class="mobile_cart_item clear">
+				<div class="mobile_cart_item">
 					<div class="mobile_cart_img">
 						<img src="/images/poster-<%= Theme.get(key.to_i).name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= Theme.get(key.to_i).name %> a Custom Theme for Apple's Keynote Presentation Software"/>
 					</div>
