@@ -28,7 +28,23 @@
 				</div>
 			</div>
 		<% end %>
+		<% if @order.order_discount != 0 %>
+			<div class="mobile_cart_totals">
+				Total: $<%= @order.order_total %>
+				Discount: <%= (@order.order_discount * 100).to_i %>%
+			</div>
+		<% end %>
+		<div class="mobile_cart_totals">
+			<strong>Total: $<%= (@order.order_total.to_i - (@order.order_total.to_i * @order.order_discount)).to_i %></strong>
+		</div>	
+		<div class="signature">
+			<h3>Thank You!</h3>
+			<h6>The Keynote Store</h6>
+		</div>
 		
+		<div class="clear">
+			<a id="print" class="btn_grey float_right" href="/print/order/<%= @order.id %>">Printable Receipt</a>
+		</div>
 	</div>
 </div>
 

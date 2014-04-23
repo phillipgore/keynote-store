@@ -192,12 +192,12 @@ input.quantity {
 
 .mobile_cart_img, .receipt_img {
 	display: block;
+	margin-bottom: 9px;
 }
 
 .mobile_cart_img img, .receipt_img img {
 	width: auto;
-	height: 66px;
-	margin-bottom: 9px;
+	height: 72px;
 }
 
 .receipt_img img {
@@ -1208,7 +1208,7 @@ tr:hover {
 	background: #fff;
 }
 
-#invoice {
+#invoice, .signature {
 	margin-top: 36px;
 	margin-bottom: 36px;
 }
