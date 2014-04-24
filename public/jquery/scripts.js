@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-//	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-//		$('.ios').show();
-//	}
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+		var mobile = true
+	}
 
 	var video = $('video')[0];
 	
@@ -21,9 +21,11 @@ $(document).ready(function() {
 	});
 	
 	$(window).on('resize', function() {
-		var vid_w = $('.video_poster').width();
-		var vid_h = $('.video_poster').height();
-		$(video).width(vid_w).height(vid_h);
+		if (mobile === true) {
+			var vid_w = $('.video_poster').width();
+			var vid_h = $('.video_poster').height();
+			$(video).width(vid_w).height(vid_h);
+		}
 	});
 	
 	$(video).on('ended', function() {
@@ -35,9 +37,11 @@ $(document).ready(function() {
 	});
 	
 	$(video).on('load', function() {
-		var vid_w = $('.video_poster').width();
-		var vid_h = $('.video_poster').height();
-		$(this).width(vid_w).height(vid_h);
+		if (mobile === true) {
+			var vid_w = $('.video_poster').width();
+			var vid_h = $('.video_poster').height();
+			$(this).width(vid_w).height(vid_h);
+		}
 	});
 	
 	$('.video_scrubber').on('mousedown', function(e) {
