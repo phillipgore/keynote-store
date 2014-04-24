@@ -6,6 +6,10 @@ $(document).ready(function() {
 
 	var video = $('video')[0];
 	
+	$(window).on('load', function() {
+		$(video).load();
+	})
+	
 	$('.video_controls a, video, .video_poster').on('click', function(e) {
 		e.preventDefault();
 		if ($('.video_controls a').hasClass('active_link')) {
@@ -25,6 +29,12 @@ $(document).ready(function() {
 		$('.video_scrubber').fadeOut(function() {
 			$(this).css('marginLeft', 0).fadeIn().removeAttr('style');
 		});
+	});
+	
+	$(video).on('load', function() {
+		var vid_w = $('.video_poster').width();
+		var vid_h = $('.video_poster').height();
+		$(this).width(vid_w).height(vid_h);
 	});
 	
 	$('.video_scrubber').on('mousedown', function(e) {
