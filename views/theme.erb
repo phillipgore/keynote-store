@@ -12,8 +12,9 @@
 		</div>
 		<div class="row">
 			<div class="video_container">
+				<img src="/images/poster-background.png">
 				<img class="video_poster" src="/images/poster-<%= @current_theme.name.downcase.gsub(" ", "-") %>.png" alt="Poster Image for <%= @current_theme.name %> a Custom Theme for Apple's Keynote Presentation Software"/>
-				<video class="video" preload="auto" >
+				<video class="video" preload="auto">
 				  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.ogv" type='video/ogg; codecs="theora, vorbis"' />
 				  <source src="http://d1b2dlt2kiblf2.cloudfront.net/<%= @current_theme.name.downcase.gsub(" ", "_") %>.mp4" /> 
 				  Your browser does not support the video tag.
