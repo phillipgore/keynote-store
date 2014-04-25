@@ -23,7 +23,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(window).on('resize', function() {
+	$(window).on('load', function() {
 		if (mobile === true) {
 			var vid_w = $('.video_poster').width();
 			var vid_h = $('.video_poster').height();
