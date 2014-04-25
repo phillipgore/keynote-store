@@ -14,7 +14,11 @@ $(document).ready(function() {
 		}
 		else {
 			if (mobile === true) {
-				var time = video.currentTime
+				if (currentTime) {
+					var time = video.currentTime
+				} else {
+					var time = 0
+				}
 				$(video).load();
 				video.currentTime = time
 			}
