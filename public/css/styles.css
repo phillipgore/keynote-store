@@ -138,7 +138,9 @@ ul li {
 }
 
 input, textarea {
-   -webkit-appearance: none;
+	-webkit-appearance: none;
+	-webkit-border-radius:0; 
+	border-radius:0;
 }
 
 input {
