@@ -13,14 +13,9 @@ $(document).ready(function() {
 			$('.video_controls a').removeClass('active_link');
 		}
 		else {
-			if (mobile === true) {
-				if (currentTime) {
-					var time = video.currentTime
-				} else {
-					var time = 0
-				}
+			if (mobile === true && !$('.video').hasClass('loaded')) {
 				$(video).load();
-				video.currentTime = time
+				$('.video').addClass('loaded')
 			}
 			$('.video_poster').fadeOut('fast');
 			video.play();
