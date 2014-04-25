@@ -14,7 +14,9 @@ $(document).ready(function() {
 		}
 		else {
 			if (mobile === true) {
+				var time = video.currentTime
 				$(video).load();
+				video.currentTime = time
 			}
 			$('.video_poster').fadeOut('fast');
 			video.play();
