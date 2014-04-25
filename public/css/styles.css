@@ -34,6 +34,10 @@ footer nav {
 	padding-bottom: 9px;
 }
 
+a, button, input {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 header {
 	background: #fff;
 	border-radius: 0.3em;
