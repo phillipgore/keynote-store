@@ -3,8 +3,11 @@ $(document).ready(function() {
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
 		var mobile = true
 	}
-
 	var video = $('video')[0];
+	
+	window.addEventListener('load', function() {
+	    new FastClick(document.body);
+	}, false);
 	
 	$('.video_controls a, video, .video_poster').on('click', function(e) {
 		e.preventDefault();
