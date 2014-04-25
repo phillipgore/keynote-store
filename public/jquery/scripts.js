@@ -13,10 +13,20 @@ $(document).ready(function() {
 			$('.video_controls a').removeClass('active_link');
 		}
 		else {
-			$(video).load();
+			if (mobile === true) {
+				$(video).load();
+			}
 			$('.video_poster').fadeOut('fast');
 			video.play();
 			$('.video_controls a').addClass('active_link');
+		}
+	});
+	
+	$(window).on('resize', function() {
+		if (mobile === true) {
+			var vid_w = $('.video_poster').width();
+			var vid_h = $('.video_poster').height();
+			$(video).width(vid_w).height(vid_h);
 		}
 	});
 	
