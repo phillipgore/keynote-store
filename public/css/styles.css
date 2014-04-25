@@ -137,6 +137,10 @@ ul li {
 	display: inline-block;
 }
 
+input, textarea {
+   -webkit-appearance: none;
+}
+
 input {
 	margin: 0;
 	padding: 4px;

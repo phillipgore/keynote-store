@@ -145,13 +145,5 @@ $(document).ready(function() {
 		window.open(url, width=612);
 		return false;
 	});
-	
-	
-	
-	
-	
-	
-	
-	
 
 });
