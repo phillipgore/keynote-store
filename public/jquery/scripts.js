@@ -13,7 +13,7 @@ $(document).ready(function() {
 			$('.video_controls a').removeClass('active_link');
 		}
 		else {
-			if (mobile === true && !$('.video').hasClass('loaded')) {
+			if (mobile === true && video.readyState === 4) {
 				$(video).load();
 				$('.video').addClass('loaded')
 			}
