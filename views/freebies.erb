@@ -3,7 +3,7 @@
 <div class="clear freebie_list">
 <% @theme.each do |theme| %>
 	<div class="col_1of2 <% if theme.name === "Complete Set" || theme.extras === "" %>hide<% end %>">
-		<div class="module<% if theme.id === 49 %> hide<% end %>">
+		<div class="module<% if theme.id === 49 %> hide<% end %><% if theme.id === 51 %> hide<% end %>">
 			<div id="<%= theme.name.downcase.gsub(" ", "_") %>_extras" class="content clear">
 				<div class="col_2of5"><div class="module"></div></div>
 				<div class="col_3of5">
