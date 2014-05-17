@@ -141,13 +141,13 @@ ul li {
 	display: inline-block;
 }
 
-input, textarea {
+input:not([type=checkbox]), textarea {
 	-webkit-appearance: none;
 	-webkit-border-radius:0; 
 	border-radius:0;
 }
 
-input {
+input:not([type=checkbox]) {
 	margin: 0;
 	padding: 4px;
 	border: 1px solid #999;
