@@ -10,6 +10,7 @@ require 'sinatra/flash'
 require 'stripe'
 require 'aws-sdk'
 require 'pony'
+require 'rack/ssl'
 
 require './models'
 require './app'
