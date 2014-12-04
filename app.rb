@@ -21,6 +21,7 @@ class TheKeynoteStore < Sinatra::Base
 		set :port, ENV['PORT']
 		set :public_folder, File.dirname(__FILE__) + '/public'
 		use Rack::Session::Pool, :expire_after => 2592000
+		use Rack::SSL
 		register Sinatra::Flash
 	end
 	
