@@ -46,6 +46,7 @@
 	<div class="content">
 		<h3>Submit payment.</h3>
 		<div class="mobile_cart_payment">
+			<div><%= flash[:notice] %></div>
 			<form action="/payment" method="POST" id="payment-form">
 				<fieldset>
 					<div class="mobile_card_input">
