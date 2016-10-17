@@ -147,7 +147,6 @@ class TheKeynoteStore < Sinatra::Base
 			        :domain               => 'www.keynotestore.com'
 			      },
 			      :subject => 'Your order from The Keynote Store. Thanks!',
-			      :headers => { 'Content-Type' => 'text/html' },
 			      :html_body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>
 			      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>
 			      		<td>#{@order.order_first_name},</td>
