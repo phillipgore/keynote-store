@@ -117,11 +117,14 @@ class TheKeynoteStore < Sinatra::Base
 					logger.info  "PHILLIP GORE - AWS access_key_id: #{ENV['ACCESS_KEY_ID']}"
 					logger.info  "PHILLIP GORE - AWS secret_access_key: #{ENV['SECRET_ACCESS_KEY']}"
 					logger.info  "PHILLIP GORE - AWS bucket: #{ENV['S3_BUCKET']}"
-					AWS.config(
+#					AWS.config(
+#						:access_key_id => ENV['ACCESS_KEY_ID'],
+#						:secret_access_key => ENV['SECRET_ACCESS_KEY']
+#					)
+					@s3 = AWS::S3.new(
 						:access_key_id => ENV['ACCESS_KEY_ID'],
 						:secret_access_key => ENV['SECRET_ACCESS_KEY']
 					)
-					@s3 = AWS::S3.new
 					@url = @s3.buckets[ENV['S3_BUCKET']].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
 					@purchase = @order.purchases.create(
 						:item_name => @theme.name,
