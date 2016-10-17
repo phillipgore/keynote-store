@@ -116,20 +116,15 @@ class TheKeynoteStore < Sinatra::Base
 					logger.info  "PHILLIP GORE - AWS access_key_id: #{ENV['AWS_ACCESS_KEY_ID']}"
 					logger.info  "PHILLIP GORE - AWS secret_access_key: #{ENV['AWS_SECRET_ACCESS_KEY']}"
 					logger.info  "PHILLIP GORE - AWS bucket: #{ENV['AWS_BUCKET']}"
-#					AWS.config(
-#						:access_key_id => ENV['ACCESS_KEY_ID'],
-#						:secret_access_key => ENV['SECRET_ACCESS_KEY']
-#					)
-#					Aws.config.update({
-#					  credentials: Aws::Credentials.new(ENV['ACCESS_KEY_ID'], ENV['SECRET_ACCESS_KEY']),
-#					})
-#					@s3 = Aws::S3.new
 					Aws.config.update({
 					  region: 'us-west-1',
 					  credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
 					})
 					@s3 = Aws::S3::Client.new
-					@url = @s3.bucket(ENV['AWS_BUCKET']).object("#{@theme.name.downcase.gsub(" ", "-")}.zip").presigned_url(:get, :expires => 86400)
+					logger.info(@s3.bucket(ENV['AWS_BUCKET']))
+					@obj = @s3.bucket(ENV['AWS_BUCKET']).object("#{@theme.name.downcase.gsub(" ", "-")}.zip")
+					@url = @obj.presigned_url(:get, :expires => 86400)
+					
 					@purchase = @order.purchases.create(
 						:item_name => @theme.name,
 						:item_id => @theme.id,
