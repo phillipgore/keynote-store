@@ -77,6 +77,7 @@ class TheKeynoteStore < Sinatra::Base
 
 # Theme Site
 	get '/' do
+		puts "PHILLIP GORE - Test Logging."
 		@heading = "Welcome."
 		erb :home
 	end
