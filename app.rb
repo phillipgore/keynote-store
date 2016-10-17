@@ -120,7 +120,7 @@ class TheKeynoteStore < Sinatra::Base
 					  region: 'us-west-1',
 					  credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
 					})
-					@s3 = Aws::S3::Client.new
+					@s3 = Aws::S3::Resource.new
 					@bucket = @s3.bucket('keynote_themes')
 					@object = @bucket.object("#{@theme.name.downcase.gsub(" ", "-")}.zip")
 					@url = @object.presigned_url(:get, :expires => 86400)
