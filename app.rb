@@ -19,18 +19,18 @@ class TheKeynoteStore < Sinatra::Base
 
 	configure do
 		set :app_file, __FILE__
-		set :port, ENV['PORT']
+		set :port, '4567'
 		set :public_folder, File.dirname(__FILE__) + '/public'
 		use Rack::Session::Pool, :expire_after => 2592000
 		use Rack::SSL
 		register Sinatra::Flash
 	end
-	
+
 	helpers do
 		include Rack::Utils
 		alias_method :h, :escape_html
 	end
-	
+
 	before do
 		@theme = Theme.all(:order => [ :list_order.asc ])
 		@complete_set = Theme.first(:name => "Complete Set")
@@ -52,7 +52,7 @@ class TheKeynoteStore < Sinatra::Base
 			end
 		end
 	end
-	
+
 	after do
 		if session['purchase']
 			if session['purchase'].empty?
@@ -60,41 +60,41 @@ class TheKeynoteStore < Sinatra::Base
 			end
 		end
 	end
-	
+
 	not_found do
 		@heading = "Whoops!"
 		erb :not_found
 	end
-	
+
 	error do
 		"Y U NO WORK?"
 	end
 
 
-	
+
 # Theme Site
 	get '/' do
 		@heading = "Welcome."
 		erb :home
 	end
-	
+
 	get '/catalogue' do
 		@heading = "Our Themes."
 		erb :catalogue
 	end
-	
+
 	get '/key/five/:id' do
 		@current_theme = Theme.get(params[:id])
 		@heading = "Our Themes."
 		erb :five
 	end
-	
+
 	get '/checkout' do
 		@heading = "Your Order."
 		@order_number = rand(1000000000000000..9999999999999999)
 		erb :checkout
 	end
-		
+
 	post '/payment' do
 		begin
 			@order =  Order.new(params[:order])
@@ -127,21 +127,21 @@ class TheKeynoteStore < Sinatra::Base
 				      :to => "#{@order.order_email}",
 				      :subject => 'Your order from The Keynote Store. Thanks!',
 				      :headers => { 'Content-Type' => 'text/html' },
-				      :body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>  
-				      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>  
-				      		<td>#{@order.order_first_name},</td>  
+				      :body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>
+				      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>
+				      		<td>#{@order.order_first_name},</td>
 				      	</tr>
 				      	<tr>
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
 				      	</tr>
-				      	<tr>  
-				      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>  
+				      	<tr>
+				      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>
 				      	</tr>
 				      	<tr>
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr>  
-				      	<tr>  
-				      		<td><a href='http://www.keynotestore.com/order/#{@order.order_number}/#{@order.id}'><img width='143' height='30' src='https://s3.amazonaws.com/keynote_store/button-email-order@2x.png' alt='Your Order.'></a></td>  
+				      	</tr>
+				      	<tr>
+				      		<td><a href='http://www.keynotestore.com/order/#{@order.order_number}/#{@order.id}'><img width='143' height='30' src='https://s3.amazonaws.com/keynote_store/button-email-order@2x.png' alt='Your Order.'></a></td>
 				      	</tr>
 				      	<tr>
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
@@ -152,7 +152,7 @@ class TheKeynoteStore < Sinatra::Base
 				      	<tr>
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
 				      	</tr>
-				      	<tr>  
+				      	<tr>
 				      		<td style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>Thank You!</td>
 				      	</tr>
 				      	<tr>
@@ -163,17 +163,17 @@ class TheKeynoteStore < Sinatra::Base
 				      	</tr>
 				      	<tr>
 				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr> 
+				      	</tr>
 				      </table>",
 				      :port => '587',
 				      :via => :smtp,
-				      :via_options => { 
-				        :address              => 'smtp.sendgrid.net', 
-				        :port                 => '587', 
-				        :enable_starttls_auto => true, 
-				        :user_name            => 'keynotestore.com', 
-				        :password             => 'Vandalia6578', 
-				        :authentication       => :plain, 
+				      :via_options => {
+				        :address              => 'smtp.sendgrid.net',
+				        :port                 => '587',
+				        :enable_starttls_auto => true,
+				        :user_name            => 'keynotestore.com',
+				        :password             => 'Vandalia6578',
+				        :authentication       => :plain,
 				        :domain               => 'www.keynotestore.com'
 				      })
 				session['purchase'] = nil
@@ -184,36 +184,36 @@ class TheKeynoteStore < Sinatra::Base
 			redirect '/checkout'
 		end
 	end
-	
+
 	get '/order/:number/:id' do
 		@heading = "Thank You."
 		@order = Order.get(params[:id])
 		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
 		erb :order_summary
 	end
-	
+
 	get '/print/order/:id' do
 		@heading = "Thank You."
 		@order = Order.get(params[:id])
 		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
 		erb :print_order_summary, :layout => false
 	end
-	
+
 	get '/free' do
 		@heading = "Help Yourself."
 		erb :freebies
 	end
-	
+
 	get '/tutorials' do
 		@heading = "Tips & Tricks."
 		erb :tutorials
 	end
-	
+
 	get '/support' do
 		@heading = "Get Some Help."
 		erb :support
 	end
-	
+
 	get '/theme/:id' do
 		@current_theme = Theme.get(params[:id])
 		@heading_selector = Random.rand(8)
@@ -225,7 +225,7 @@ class TheKeynoteStore < Sinatra::Base
 			erb :theme
 		end
 	end
-	
+
 	get '/buy/:id' do
 		if session['purchase']
 			session['purchase'].push(params[:id].to_i)
@@ -236,24 +236,24 @@ class TheKeynoteStore < Sinatra::Base
 		end
 		redirect '/checkout'
 	end
-	
+
 	get '/remove/:id' do
 		session['purchase'].delete(params[:id].to_i)
 		redirect '/checkout'
 	end
-	
+
 	post '/update/:id' do
 		@existing_count = session['purchase'].count(params[:id].to_i)
 		@new_count = params[:new_count].to_i
 		session['purchase'].delete(params[:id].to_i)
 		@new_count.times{
 			session['purchase'].push(params[:id].to_i)
-		}	
+		}
 		redirect '/checkout'
 	end
 
 
-	
+
 # Admin Login
 	get '/login' do
 		@heading = "Login to Admin."
@@ -276,21 +276,21 @@ class TheKeynoteStore < Sinatra::Base
 			redirect '/login'
 		end
 	end
-	
+
 	get '/logout' do
 		session['user_id'] = nil
 		redirect '/login'
-	end	
+	end
 
 
-	
+
 # Admin Site
 	before '/admin/*' do
 		unless session['user_id']
 			redirect '/login'
 		end
 	end
-	
+
 	get '/admin' do
 		if session['user_id']
 			redirect '/admin/edit'
@@ -298,12 +298,12 @@ class TheKeynoteStore < Sinatra::Base
 			redirect '/login'
 		end
 	end
-	
+
 	get '/admin/edit' do
 		@heading = "Edit A Theme."
 		erb :admin_edit, :layout => :admin
 	end
-	
+
 	get '/admin/edit/:id' do
 		@theme = Theme.get(params[:id])
 		@banner_id = "#{@theme.name}"
@@ -312,7 +312,7 @@ class TheKeynoteStore < Sinatra::Base
 		@theme_list = Theme.all()
 		erb :admin_update, :layout => :admin
 	end
-	
+
 	post '/admin/update/theme/:id' do
 		@theme = Theme.get(params[:id])
 		@theme.update(params[:theme])
@@ -325,13 +325,13 @@ class TheKeynoteStore < Sinatra::Base
 		@theme = Theme.all()
 		erb :admin_edit, :layout => :admin
 	end
-	
+
 	get '/admin/add' do
 		@heading = "Add A Theme."
 		@theme = Theme.all()
 		erb :admin_add, :layout => :admin
 	end
-	
+
 	post '/admin/add/theme' do
 		@new_theme = Theme.new(params[:theme])
 		if @new_theme.save
@@ -343,18 +343,18 @@ class TheKeynoteStore < Sinatra::Base
 		@theme = Theme.all()
 		erb :admin_add, :layout => :admin
 	end
-	
+
 	get '/admin/delete/:id' do
 		Theme.get(params[:id]).destroy!
 		redirect '/admin/edit'
 	end
-	
+
 	get '/admin/users' do
 		@heading = "Manage Users."
 		@users = User.all(:order => [:user_last_name.asc])
 		erb :admin_users, :layout => :admin
 	end
-	
+
 	post '/admin/add/user' do
 		@user = User.new(params[:user])
 		if @user.save
@@ -364,13 +364,13 @@ class TheKeynoteStore < Sinatra::Base
 			redirect "/admin/users"
 		end
 	end
-	
+
 	get '/admin/edit/user/:id' do
 		@heading = "Update User."
 		@user = User.get(params[:id])
 		erb :admin_user_edit, :layout => :admin
 	end
-	
+
 	post '/admin/update/user/:id' do
 		@user = User.get(params[:id])
 		@user.update(params[:user])
@@ -381,17 +381,17 @@ class TheKeynoteStore < Sinatra::Base
 			redirect "/admin/edit/user/#{@user.id}"
 		end
 	end
-	
+
 	get '/admin/change/password/:id' do
 		@heading = "Change Password."
 		@user = User.get(params[:id])
 		erb :admin_user_password_edit, :layout => :admin
 	end
-	
+
 	post '/admin/update/password/:id' do
 		@current_user = "#{session['user_id']}"
 		@user = User.get(params[:id])
-		if @user.password == params[:password] 
+		if @user.password == params[:password]
 			if params[:new_password] == params[:retype_password]
 				@user = User.update(:password => params[:new_password])
 				if @current_user == params[:id]
@@ -411,7 +411,7 @@ class TheKeynoteStore < Sinatra::Base
 			redirect "/admin/change/password/#{@user.id}"
 		end
 	end
-	
+
 	get '/admin/delete/user/:id' do
 		if User.count > 1
 			@user = User.get(params[:id]).destroy!
@@ -421,26 +421,26 @@ class TheKeynoteStore < Sinatra::Base
 			redirect "/admin/users"
 		end
 	end
-	
+
 	get '/admin/orders' do
 		@heading = "Find Orders."
 		@order = Order.all(:order => [ :created_at.desc ])
 		erb :admin_orders, :layout => :admin
 	end
-	
+
 #	get '/admin/delete/order/:id' do
 #		@order = Order.get(params[:id]).destroy!
 #		redirect "/admin/orders"
 #	end
-	
+
 	get '/admin/receipt/:id' do
 		@heading = "Review Receipt."
 		@order = Order.get(params[:id])
 		@purchase = @order.purchases.all(:order => [ :created_at.desc ])
 		erb :admin_receipt, :layout => :admin
 	end
-		
-	
-	
+
+
+
 	TheKeynoteStore.run!
 end
