@@ -11,11 +11,14 @@ require 'stripe'
 require 'aws-sdk'
 require 'pony'
 require 'rack/ssl'
+require 'dotenv'
 
 require './models'
 require './app'
 
 class TheKeynoteStore < Sinatra::Base
+
+	Dotenv.load
 
 	configure do
 		set :app_file, __FILE__
@@ -99,7 +102,7 @@ class TheKeynoteStore < Sinatra::Base
 		begin
 			@order =  Order.new(params[:order])
 			if @order.save
-				Stripe.api_key = "wnhqYbLV0LvPFZlZCeKmPLW8MrhZjpwA"
+				Stripe.api_key = ENV['STRIPE_API_KEY']
 				@charge = Stripe::Charge.create(
 				  :amount => @amount,
 				  :currency => "usd",
@@ -109,8 +112,8 @@ class TheKeynoteStore < Sinatra::Base
 				@purchase_hash.each do |key, value|
 					@theme = Theme.get(key.to_i)
 					AWS.config(
-						:access_key_id => 'AKIAJYQDOD2J6XAH77QQ',
-						:secret_access_key => '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'
+						:access_key_id => ENV['ACCESS_KEY_ID'],
+						:secret_access_key => ENV['SECRET_ACCESS_KEY']
 					)
 					@s3 = AWS::S3.new
 					@url = @s3.buckets['keynote_themes'].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
@@ -171,8 +174,8 @@ class TheKeynoteStore < Sinatra::Base
 				        :address              => 'smtp.sendgrid.net',
 				        :port                 => '587',
 				        :enable_starttls_auto => true,
-				        :user_name            => 'keynotestore.com',
-				        :password             => 'Vandalia6578',
+				        :user_name            => ENV['USER_NAME'],
+				        :password             => ENV['PASSWORD'],
 				        :authentication       => :plain,
 				        :domain               => 'www.keynotestore.com'
 				      })
