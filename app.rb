@@ -113,9 +113,9 @@ class TheKeynoteStore < Sinatra::Base
 				)
 				@purchase_hash.each do |key, value|
 					@theme = Theme.get(key.to_i)
-					logger.info  "PHILLIP GORE - AWS access_key_id: #{ENV['ACCESS_KEY_ID']}"
-					logger.info  "PHILLIP GORE - AWS secret_access_key: #{ENV['SECRET_ACCESS_KEY']}"
-					logger.info  "PHILLIP GORE - AWS bucket: #{ENV['S3_BUCKET']}"
+					logger.info  "PHILLIP GORE - AWS access_key_id: #{ENV['AWS_ACCESS_KEY_ID']}"
+					logger.info  "PHILLIP GORE - AWS secret_access_key: #{ENV['AWS_SECRET_ACCESS_KEY']}"
+					logger.info  "PHILLIP GORE - AWS bucket: #{ENV['AWS_BUCKET']}"
 #					AWS.config(
 #						:access_key_id => ENV['ACCESS_KEY_ID'],
 #						:secret_access_key => ENV['SECRET_ACCESS_KEY']
@@ -124,11 +124,12 @@ class TheKeynoteStore < Sinatra::Base
 #					  credentials: Aws::Credentials.new(ENV['ACCESS_KEY_ID'], ENV['SECRET_ACCESS_KEY']),
 #					})
 #					@s3 = Aws::S3.new
-					@s3 = Aws::S3::Resource.new({
-						credentials: Aws::Credentials.new(ENV['ACCESS_KEY_ID'], ENV['SECRET_ACCESS_KEY']),
-						region: 'us-east-1'
+					Aws.config.update({
+					  region: 'us-west-1',
+					  credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
 					})
-					@url = @s3.buckets[ENV['S3_BUCKET']].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
+					@s3 = Aws::S3::Client.new
+					@url = @s3.buckets[ENV['AWS_BUCKET']].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
 					@purchase = @order.purchases.create(
 						:item_name => @theme.name,
 						:item_id => @theme.id,
