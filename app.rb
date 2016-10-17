@@ -121,9 +121,9 @@ class TheKeynoteStore < Sinatra::Base
 					  credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
 					})
 					@s3 = Aws::S3::Client.new
-					logger.info(@s3.bucket(ENV['AWS_BUCKET']))
-					@obj = @s3.bucket('keynote_themes').object("#{@theme.name.downcase.gsub(" ", "-")}.zip")
-					@url = @obj.presigned_url(:get, :expires => 86400)
+					@bucket = @s3.bucket('keynote_themes')
+					@object = @bucket.object("#{@theme.name.downcase.gsub(" ", "-")}.zip")
+					@url = @object.presigned_url(:get, :expires => 86400)
 					
 					@purchase = @order.purchases.create(
 						:item_name => @theme.name,
