@@ -19,7 +19,6 @@ require './app'
 class TheKeynoteStore < Sinatra::Base
 
 	Dotenv.load
-	include AWS::S3
 
 	configure :production, :development do
 		set :app_file, __FILE__
