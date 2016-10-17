@@ -120,10 +120,14 @@ class TheKeynoteStore < Sinatra::Base
 #						:access_key_id => ENV['ACCESS_KEY_ID'],
 #						:secret_access_key => ENV['SECRET_ACCESS_KEY']
 #					)
-					Aws.config.update({
-					  credentials: Aws::Credentials.new(ENV['ACCESS_KEY_ID'], ENV['SECRET_ACCESS_KEY']),
-					})
-					@s3 = Aws::S3.new
+#					Aws.config.update({
+#					  credentials: Aws::Credentials.new(ENV['ACCESS_KEY_ID'], ENV['SECRET_ACCESS_KEY']),
+#					})
+#					@s3 = Aws::S3.new
+					@s3 = Aws::S3::Resource.new(
+						credentials: Aws::Credentials.new(ENV['ACCESS_KEY_ID'], ENV['SECRET_ACCESS_KEY']),
+						region: 'us-east-1'
+					)
 					@url = @s3.buckets[ENV['S3_BUCKET']].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
 					@purchase = @order.purchases.create(
 						:item_name => @theme.name,
