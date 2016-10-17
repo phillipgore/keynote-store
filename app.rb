@@ -20,13 +20,14 @@ class TheKeynoteStore < Sinatra::Base
 
 	Dotenv.load
 
-	configure do
+	configure :production, :development do
 		set :app_file, __FILE__
 		set :port, ENV['PORT']
 		set :public_folder, File.dirname(__FILE__) + '/public'
 		use Rack::Session::Pool, :expire_after => 2592000
 		use Rack::SSL
 		register Sinatra::Flash
+		enable :logging
 	end
 
 	helpers do
@@ -77,7 +78,7 @@ class TheKeynoteStore < Sinatra::Base
 
 # Theme Site
 	get '/' do
-		puts "PHILLIP GORE - Test Logging."
+		logger.info  "PHILLIP GORE - Test Logging."
 		@heading = "Welcome."
 		erb :home
 	end
