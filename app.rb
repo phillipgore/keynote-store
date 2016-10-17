@@ -134,59 +134,59 @@ class TheKeynoteStore < Sinatra::Base
 					)
 				end
 				Pony.mail(
-				      :from => 'The Keynote Store <sales@keynotestore.com>',
-				      :to => "#{@order.order_email}",
-				      :subject => 'Your order from The Keynote Store. Thanks!',
-				      :headers => { 'Content-Type' => 'text/html' },
-				      :body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>
-				      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>
-				      		<td>#{@order.order_first_name},</td>
-				      	</tr>
-				      	<tr>
-				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr>
-				      	<tr>
-				      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>
-				      	</tr>
-				      	<tr>
-				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr>
-				      	<tr>
-				      		<td><a href='http://www.keynotestore.com/order/#{@order.order_number}/#{@order.id}'><img width='143' height='30' src='https://s3.amazonaws.com/keynote_store/button-email-order@2x.png' alt='Your Order.'></a></td>
-				      	</tr>
-				      	<tr>
-				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr>
-				      	<tr>
-				      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at <a style='color: #1E4CB1; text-decoration: none;' href='mailto:sales@keynotestore.com?Subject=Keynote%20Theme%20Support'>support@keynotestore.com</a>.</td>
-				      	</tr>
-				      	<tr>
-				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr>
-				      	<tr>
-				      		<td style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>Thank You!</td>
-				      	</tr>
-				      	<tr>
-				      		<td>The Keynote Store</td>
-				      	</tr>
-				      	<tr>
-				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr>
-				      	<tr>
-				      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
-				      	</tr>
-				      </table>",
-				      :port => '587',
-				      :via => :smtp,
-				      :via_options => {
-				        :address              => 'smtp.sendgrid.net',
-				        :port                 => '587',
-				        :enable_starttls_auto => true,
-				        :user_name            => ENV['USER_NAME'],
-				        :password             => ENV['PASSWORD'],
-				        :authentication       => :plain,
-				        :domain               => 'www.keynotestore.com'
-				      })
+			      :from => 'The Keynote Store <sales@keynotestore.com>',
+			      :to => "#{@order.order_email}",
+			      :via => :smtp,
+			      :via_options => {
+			        :address              => 'smtp.sendgrid.net',
+			        :port                 => '587',
+			        :enable_starttls_auto => true,
+			        :user_name            => ENV['USER_NAME'],
+			        :password             => ENV['PASSWORD'],
+			        :authentication       => :plain,
+			        :domain               => 'www.keynotestore.com'
+			      },
+			      :subject => 'Your order from The Keynote Store. Thanks!',
+			      :headers => { 'Content-Type' => 'text/html' },
+			      :html_body => "<table width='600' align='center' style='font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666; line-height: 26px; text-align: justify;'>
+			      	<tr style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>
+			      		<td>#{@order.order_first_name},</td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+			      	</tr>
+			      	<tr>
+			      		<td>You can view your receipt and download your order through the button below. You will only be able to download your order for 24 hours from the time of purchase.</td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+			      	</tr>
+			      	<tr>
+			      		<td><a href='http://www.keynotestore.com/order/#{@order.order_number}/#{@order.id}'><img width='143' height='30' src='https://s3.amazonaws.com/keynote_store/button-email-order@2x.png' alt='Your Order.'></a></td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+			      	</tr>
+			      	<tr>
+			      		<td>We truly appreciate your business. If you need any assistance now or in the future please contact us at <a style='color: #1E4CB1; text-decoration: none;' href='mailto:sales@keynotestore.com?Subject=Keynote%20Theme%20Support'>support@keynotestore.com</a>.</td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+			      	</tr>
+			      	<tr>
+			      		<td style='font-family: Garamond, Georgia, Times, serif; color: black; font-size: 24px'>Thank You!</td>
+			      	</tr>
+			      	<tr>
+			      		<td>The Keynote Store</td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+			      	</tr>
+			      	<tr>
+			      		<td><img src='https://s3.amazonaws.com/keynote_store/spacer.png'></td>
+			      	</tr>
+			      </table>",
+		      )
 				      logger.info  "PHILLIP GORE - Pony user_name: #{ENV['USER_NAME']}"
 				      logger.info  "PHILLIP GORE - Pony password: #{ENV['PASSWORD']}"
 				session['purchase'] = nil
