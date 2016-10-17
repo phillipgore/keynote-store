@@ -117,7 +117,7 @@ class TheKeynoteStore < Sinatra::Base
 					logger.info  "PHILLIP GORE - AWS secret_access_key: #{ENV['AWS_SECRET_ACCESS_KEY']}"
 					logger.info  "PHILLIP GORE - AWS bucket: #{ENV['AWS_BUCKET']}"
 					Aws.config.update({
-					  region: 'us-west-1',
+					  region: 'us-west-2',
 					  credentials: Aws::Credentials.new(ENV['AWS_ACCESS_KEY_ID'], ENV['AWS_SECRET_ACCESS_KEY'])
 					})
 					@signer = Aws::S3::Presigner.new
