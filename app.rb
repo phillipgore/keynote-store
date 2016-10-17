@@ -123,7 +123,7 @@ class TheKeynoteStore < Sinatra::Base
 					@s3 = Aws::S3::Resource.new
 					@bucket = @s3.bucket('keynote_themes')
 					@object = @bucket.object("#{@theme.name.downcase.gsub(" ", "-")}.zip")
-					@url = @object.presigned_url(:get, expires_in: 86400)
+					@url = @object.presigned_url(:get, acl: 'public-read', expires_in: 86400)
 					
 					@purchase = @order.purchases.create(
 						:item_name => @theme.name,
