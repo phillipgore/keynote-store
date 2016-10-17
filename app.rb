@@ -8,7 +8,7 @@ require 'dm-validations'
 require 'bcrypt'
 require 'sinatra/flash'
 require 'stripe'
-require 'aws/s3'
+require 'aws-sdk'
 require 'pony'
 require 'rack/ssl'
 require 'dotenv'
@@ -120,11 +120,11 @@ class TheKeynoteStore < Sinatra::Base
 #						:access_key_id => ENV['ACCESS_KEY_ID'],
 #						:secret_access_key => ENV['SECRET_ACCESS_KEY']
 #					)
-					s3 = AWS::S3.new(
+					@s3 = Aws::S3::Client.new(
 						:access_key_id => ENV['ACCESS_KEY_ID'],
 						:secret_access_key => ENV['SECRET_ACCESS_KEY']
 					)
-					@url = s3.buckets[ENV['S3_BUCKET']].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
+					@url = @s3.buckets[ENV['S3_BUCKET']].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
 					@purchase = @order.purchases.create(
 						:item_name => @theme.name,
 						:item_id => @theme.id,
