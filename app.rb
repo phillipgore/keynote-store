@@ -78,7 +78,6 @@ class TheKeynoteStore < Sinatra::Base
 
 # Theme Site
 	get '/' do
-		logger.info  "PHILLIP GORE - Test Logging."
 		@heading = "Welcome."
 		erb :home
 	end
@@ -105,6 +104,7 @@ class TheKeynoteStore < Sinatra::Base
 			@order =  Order.new(params[:order])
 			if @order.save
 				Stripe.api_key = ENV['STRIPE_API_KEY']
+				logger.info  "PHILLIP GORE - Stripe api_key: #{ENV['STRIPE_API_KEY']}"
 				@charge = Stripe::Charge.create(
 				  :amount => @amount,
 				  :currency => "usd",
@@ -117,6 +117,8 @@ class TheKeynoteStore < Sinatra::Base
 						:access_key_id => ENV['ACCESS_KEY_ID'],
 						:secret_access_key => ENV['SECRET_ACCESS_KEY']
 					)
+					logger.info  "PHILLIP GORE - AWS access_key_id: #{ENV['ACCESS_KEY_ID']}"
+					logger.info  "PHILLIP GORE - AWS secret_access_key: #{ENV['SECRET_ACCESS_KEY']}"
 					@s3 = AWS::S3.new
 					@url = @s3.buckets['keynote_themes'].objects["#{@theme.name.downcase.gsub(" ", "-")}.zip"].url_for(:read, :expires => 86400)
 					@purchase = @order.purchases.create(
@@ -181,10 +183,13 @@ class TheKeynoteStore < Sinatra::Base
 				        :authentication       => :plain,
 				        :domain               => 'www.keynotestore.com'
 				      })
+				      logger.info  "PHILLIP GORE - Pony user_name: #{ENV['USER_NAME']}"
+				      logger.info  "PHILLIP GORE - Pony password: #{ENV['PASSWORD']}"
 				session['purchase'] = nil
 				redirect "/order/#{@order.order_number}/#{@order.id}"
 			end
 		rescue Stripe::StripeError => e
+			logger.info  "PHILLIP GORE - Stripe Error: #{e.message}"
 			flash.next[:notice] = "Sorry. #{e.message}"
 			redirect '/checkout'
 		end
