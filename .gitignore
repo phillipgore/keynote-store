@@ -3,3 +3,5 @@ keynote-store.db
 public/photoshop/
 public/video/
 .env
+www_keynotestore_com.key
+www_keynotestore_com.pem
