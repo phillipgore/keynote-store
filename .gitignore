@@ -2,6 +2,7 @@
 keynote-store.db
 public/photoshop/
 public/video/
+.keep
 .env
 bundle.pem
 www_keynotestore_com.key
