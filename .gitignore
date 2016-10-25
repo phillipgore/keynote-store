@@ -1,5 +1,5 @@
 .DS_Store
-*.db
-*photoshop
-*video
+keynote-store.db
+public/photoshop/
+public/video/
 .env
